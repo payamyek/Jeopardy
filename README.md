@@ -1,2 +1,2 @@
 # Jeopardy
-Simple Jeopardy game created using React
+Simple Jeopardy game created using ReactJS
