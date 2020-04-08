@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata");
+h1.Leaderboard {
+    color: white;
+    font-family: Inconsolata;
+}
+
+p.Leaderboard {
+    color: white;
+    font-family: Inconsolata;
+}
