@@ -33,13 +33,16 @@ const GameOnePreset = {
     ]
 }
 
-function CategoryColumn({category, updateScoreA, updateScoreB}){
+function CategoryColumn({category, updateScoreA, updateScoreB, changeTurn, turnA}){
     return (
         <div className="category-column">
             <CategoryCard category={category}/>
             { GameOnePreset["Co-Workers"]
                 .map(e => <PointCard points={e["Points"]} question={e["Question"]} hint={e["Hint"]}
-                                     updateScoreA={updateScoreA} updateScoreB={updateScoreB}/>)
+                                     updateScoreA={updateScoreA}
+                                     updateScoreB={updateScoreB}
+                                     changeTurn={changeTurn}
+                turnA={turnA}/>)
             }
         </div>
     );
