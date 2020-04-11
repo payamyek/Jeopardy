@@ -1,10 +1,10 @@
 import React, {useState} from "react"
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle'
 import "./PointCard.css"
 
@@ -12,6 +12,8 @@ import "./PointCard.css"
 function PointCard({points, hint, question}) {
 
     const [open, setOpen] = useState(false);
+    const [answer, setAnswer] = useState('')
+    const [active, setActive] = useState(true)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -21,10 +23,17 @@ function PointCard({points, hint, question}) {
         setOpen(false);
     };
 
+    const handleSubmit = () => {
+        if (answer.toLowerCase() === question.toLowerCase()){
+            handleClose()
+            setActive(false)
+        }
+    };
+
     return (
         <div>
-            <div className="game-card" onClick={handleClickOpen}>
-                <p>{points}</p>
+            <div className={active ? "active-game-card" : "inactive-game-card"} onClick={active ? handleClickOpen : null}>
+                <p>{ points }</p>
             </div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">{ points } Points</DialogTitle>
@@ -38,14 +47,16 @@ function PointCard({points, hint, question}) {
                         id="name"
                         label="Question"
                         fullWidth
+                        value={answer}
+                        onChange={e => setAnswer(e.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} color="primary">
-                        Verify
+                    <Button onClick={handleSubmit} color="primary">
+                        Submit
                     </Button>
                 </DialogActions>
             </Dialog>
