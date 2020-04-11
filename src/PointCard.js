@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import "./PointCard.css"
 
 
-function PointCard({points, hint, question}) {
+function PointCard({points, hint, question, updateScoreA, updateScoreB}) {
 
     const [open, setOpen] = useState(false);
     const [answer, setAnswer] = useState('')
@@ -27,6 +27,7 @@ function PointCard({points, hint, question}) {
         if (answer.toLowerCase() === question.toLowerCase()){
             handleClose()
             setActive(false)
+            updateScoreA(points)
         }
     };
 
