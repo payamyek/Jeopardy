@@ -3,22 +3,22 @@ import CategoryCard from "./CategoryCard";
 import PointCard from "./PointCard";
 import "./CategoryColumn.css"
 
-function CategoryColumn({category}){
+
+function CategoryColumn({category, data , updateScoreA, updateScoreB, changeTurn, turnA}){
     return (
         <div className="category-column">
-            { generateColumn(category) }
+            <CategoryCard category={category}/>
+            {
+                data.map(e => <PointCard points={e["Points"]}
+                                         question={e["Question"]}
+                                         hint={e["Hint"]}
+                                         updateScoreA={updateScoreA}
+                                         updateScoreB={updateScoreB}
+                                         changeTurn={changeTurn}
+                turnA={turnA}/>)
+            }
         </div>
     );
-};
-
-function generateColumn(category) {
-    let arr = []
-    arr[0] = <CategoryCard category={category}></CategoryCard>
-
-    for (let x = 1; x <= 5; x++){
-        arr[x] = <PointCard points={x * 100}></PointCard>
-    }
-    return arr
 }
 
 export default CategoryColumn;
