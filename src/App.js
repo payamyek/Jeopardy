@@ -5,7 +5,7 @@ import GameBoard from './GameBoard';
 function App() {
   return (
     <div className="App">
-      <GameBoard categories={[ "Co-workers", "Tech", "Sports", "Math", "Animals"]} teams={["Zoomers", "Boomers"]}/>
+      <GameBoard teams={["Zoomers", "Boomers"]}/>
     </div>
   );
 }

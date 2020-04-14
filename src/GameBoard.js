@@ -1,10 +1,9 @@
 import React , { useState } from "react"
 import CategoryColumn from "./CategoryColumn";
 import Leaderboard from "./Leaderboard";
-import Teams from "./Teams"
 import "./GameBoard.css"
 
-function GameBoard({ categories, teams }) {
+function GameBoard({ teams }) {
     const [teamAScore, setTeamAScore] = useState(0)
     const [teamBScore, setTeamBScore] = useState(0)
     const [teamAMove, setTeamAMove] = useState(true)
@@ -15,17 +14,6 @@ function GameBoard({ categories, teams }) {
 
     let updateScoreB = (score) => {
         setTeamBScore(teamBScore + score)
-    }
-
-    let teamPlayers = {
-        "teamA": {
-                "name": teams[0],
-                "players": ["Justin", "Ali", "Areeb", "Jason", "Anand", "Octavian", "Allan"]
-            },
-        "teamB": {
-            "name": teams[1],
-            "players": ["Carl", "Leyang", "Ivy", "Kevin", "Nina", "Jo", "Viswa"]
-        }
     }
 
     const data = {
@@ -184,8 +172,8 @@ function GameBoard({ categories, teams }) {
 
     return (
         <div className="game-board">
-            {generateGameBoard()}
-            <Leaderboard teams={teams} scoreA={teamAScore} scoreB={teamBScore}/>
+            { generateGameBoard() }
+            <Leaderboard teams={teams} scoreA={teamAScore} scoreB={teamBScore} turnA={teamAMove}/>
         </div>
     )
 }

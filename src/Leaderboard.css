@@ -10,7 +10,15 @@ div.leaderboard{
 }
 
 
-h1.leaderboard {
+
+h1.leaderboard-turn {
+    font-weight: bolder;
+    font-family: "Inconsolata";
+    color: chartreuse;
+    font-size: xx-large;
+}
+
+h1.leaderboard-default {
     font-weight: bolder;
     font-family: "Inconsolata";
     color: white;
