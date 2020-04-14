@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata");
-h1.Leaderboard {
-    color: white;
-    font-family: Inconsolata;
+
+div.leaderboard{
+    min-width: 12%;
+    margin-left: 2%;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
 }
 
-p.Leaderboard {
+
+h1.leaderboard {
+    font-weight: bolder;
+    font-family: "Inconsolata";
     color: white;
-    font-family: Inconsolata;
+    font-size: xx-large;
 }
