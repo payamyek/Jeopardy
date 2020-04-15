@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import "./Leaderboard.css"
 
 function Leaderboard({teams, scoreA, scoreB, turnA}) {
