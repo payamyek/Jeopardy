@@ -30,12 +30,12 @@ function GameBoard({ teams }) {
             },
             {
                 "Points": 300,
-                "Hint": "This person has been known to address Carl as Kevin",
+                "Hint": "This person faked an one storey fall on camera for views",
                 "Question": "Who is Jason?"
             },
             {
                 "Points": 400,
-                "Hint": "This person would ask you for a ride home if his chauffeur was not available ",
+                "Hint": "This person was deserted by his loyal companion and was left to starve",
                 "Question": "Who is Carl?"
             },
             {
@@ -101,55 +101,55 @@ function GameBoard({ teams }) {
         "Movie Quotes" : [
             {
                 "Points": 100,
-                "Hint": "To infinity and beyond!",
+                "Hint": "\"To infinity and beyond!\"",
                 "Question": "What is toy story?"
             },
             {
                 "Points": 200,
-                "Hint": "I'll be back",
+                "Hint": "\"I'll be back\"",
                 "Question": "What is the terminator?"
             },
             {
                 "Points": 300,
-                "Hint": "I am your father",
+                "Hint": "\"I am your father\"",
                 "Question": "What is starwars?"
             },
             {
                 "Points": 400,
-                "Hint": "Just keep swimming",
+                "Hint": "\"Just keep swimming\"",
                 "Question": "What is finding nemo?"
             },
             {
                 "Points": 500,
-                "Hint": "I'm the king of the world",
+                "Hint": "\"I'm the king of the world\"",
                 "Question": "What is the titanic?"
             }
         ],
         "Countries" : [
             {
                 "Points": 100,
-                "Hint": "Eh, pass me the syrup!",
+                "Hint": "\"Eh, pass me the syrup!\"",
                 "Question": "What is canada?"
             },
             {
                 "Points": 200,
-                "Hint": "Why is the hospital so expensive, Bob?",
+                "Hint": "\"Why is the hospital so expensive, Bob?\"",
                 "Question": "What is america?"
             },
             {
                 "Points": 300,
-                "Hint": "Hey, it's santa!",
-                "Question": "What is the north pole?"
-            },
-            {
-                "Points": 400,
-                "Hint": "Yo Jim, why is that kangaroo chasing us?",
+                "Hint": "\"Yo Jim, why is that kangaroo chasing us?\"",
                 "Question": "What is australia?"
             },
             {
-                "Points": 500,
-                "Hint": "O Romeo, Romeo, wherefore art thou Romeo?",
+                "Points": 400,
+                "Hint": "\"Why is the pizza tilted?\"",
                 "Question": "What is italy?"
+            },
+            {
+                "Points": 500,
+                "Hint": "\"Why is their national animal an unicorn?\"",
+                "Question": "What is scotland?"
             }
         ]
     }

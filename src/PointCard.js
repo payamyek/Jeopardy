@@ -59,6 +59,11 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
 
     const handleClose = () => {
         setOpen(false);
+        setPlayCorrectSong(false);
+        setPlayIncorrectSong(false);
+        setShowCorrectSnackbar(false);
+        setShowIncorrectSnackbar(false);
+        setAnswer('')
     };
 
     const handleSubmit = () => {
