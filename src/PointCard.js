@@ -9,6 +9,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle'
 import "./PointCard.css"
+import rubber_duck from "./rubber_duck.mp3";
+import party_horn from "./party_horn.mp3"
+import Sound from "react-sound";
 
 
 function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTurn, turnA}) {
@@ -17,6 +20,8 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
     const [showCorrectSnackbar, setShowCorrectSnackbar] = useState(false)
+    const [playCorrectSong, setPlayCorrectSong] = useState(false)
+    const [playIncorrectSong, setPlayIncorrectSong] = useState(false)
     const [showIncorrectSnackbar, setShowIncorrectSnackbar] = useState(false)
 
     const correctResponses = [
@@ -46,6 +51,10 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
 
     const handleClickOpen = () => {
         setOpen(true);
+        setPlayCorrectSong(false);
+        setPlayIncorrectSong(false);
+        setShowCorrectSnackbar(false);
+        setShowIncorrectSnackbar(false);
     };
 
     const handleClose = () => {
@@ -53,20 +62,23 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
     };
 
     const handleSubmit = () => {
-        if (answer.toLowerCase() === question.toLowerCase()){
-            if (turnA){
+        if (answer.toLowerCase().trim() === question.toLowerCase().trim()){
+            if (turnA) {
                 updateScoreA(points)
-            }else {
+            } else {
                 updateScoreB(points)
             }
             changeTurn()
             setActive(false)
             handleClose()
             handleCorrectAnswer()
+            setPlayCorrectSong(true)
         } else {
             changeTurn()
             handleClose()
             handleIncorrectAnswer()
+            setPlayIncorrectSong(true)
+            setAnswer('')
         }
     };
 
@@ -83,6 +95,7 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
             return;
         }
         setShowCorrectSnackbar(false);
+        setPlayCorrectSong(false)
     };
 
     const handleCloseIncorrectSnackbar = (event, reason) => {
@@ -90,6 +103,7 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
             return;
         }
         setShowIncorrectSnackbar(false);
+        setPlayIncorrectSong(false);
     };
 
     return (
@@ -119,15 +133,17 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
                 </DialogActions>
             </Dialog>
             <Snackbar open={showCorrectSnackbar} autoHideDuration={5000} onClose={handleCloseCorrectSnackbar}>
-                <Alert onClose={handleCloseCorrectSnackbar} severity="success">
+                <Alert severity="success">
                     { response(correctResponses) }
                 </Alert>
             </Snackbar>
             <Snackbar open={showIncorrectSnackbar} autoHideDuration={5000} onClose={handleCloseIncorrectSnackbar}>
-                <Alert onClose={handleCloseIncorrectSnackbar} severity="error">
+                <Alert severity="error">
                     { response(incorrectResponses) }
                 </Alert>
             </Snackbar>
+            <Sound url={rubber_duck} volume={100} playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED} />
+            <Sound url={party_horn} volume={100} playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED} />
         </div>
     );
 }
