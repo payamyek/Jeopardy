@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <GameBoard teams={["Zoomers", "Boomers"]}/>
-        <Sound url={wiimusic} autoLoad={true}  loop={true} volume={100} playStatus={Sound.status.PLAYING} />
+      <Sound url={wiimusic} autoLoad={true} loop={true} volume={100} playStatus={Sound.status.PLAYING} />
     </div>
   );
 }

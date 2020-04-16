@@ -6,7 +6,7 @@ import "./GameBoard.css"
 function GameBoard({ teams }) {
     const [teamAScore, setTeamAScore] = useState(0)
     const [teamBScore, setTeamBScore] = useState(0)
-    const [teamAMove, setTeamAMove] = useState(true)
+    const [isTeamAMove, setIsTeamAMove] = useState(true)
 
     let updateScoreA = (score) => {
         setTeamAScore(teamAScore + score)
@@ -154,17 +154,17 @@ function GameBoard({ teams }) {
         ]
     }
 
-    let columns = Object.keys(data)
 
     let generateGameBoard = () => {
+        let columns = Object.keys(data)
         let result = []
         for(let i = 0; i < 5; i++) {
             result[i] = <CategoryColumn category={columns[i]}
                                         data={data[columns[i]]}
                                         updateScoreA={updateScoreA}
                                         updateScoreB={updateScoreB}
-                                        changeTurn={() => setTeamAMove(!teamAMove)}
-                                        turnA={teamAMove}
+                                        changeTurn={() => setIsTeamAMove(!isTeamAMove)}
+                                        isTeamAMove={isTeamAMove}
             />
         }
         return result
@@ -173,7 +173,7 @@ function GameBoard({ teams }) {
     return (
         <div className="game-board">
             { generateGameBoard() }
-            <Leaderboard teams={teams} scoreA={teamAScore} scoreB={teamBScore} turnA={teamAMove}/>
+            <Leaderboard teams={teams} scoreA={teamAScore} scoreB={teamBScore} turnA={isTeamAMove}/>
         </div>
     )
 }

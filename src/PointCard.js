@@ -8,13 +8,13 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle'
-import "./PointCard.css"
 import rubber_duck from "./rubber_duck.mp3";
 import party_horn from "./party_horn.mp3"
 import Sound from "react-sound";
+import "./PointCard.css"
 
 
-function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTurn, turnA}) {
+function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTurn, isTeamAMove}) {
 
     const [open, setOpen] = useState(false);
     const [answer, setAnswer] = useState('')
@@ -49,26 +49,27 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
         return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    const reset = () => {
         setPlayCorrectSong(false);
         setPlayIncorrectSong(false);
         setShowCorrectSnackbar(false);
         setShowIncorrectSnackbar(false);
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+        reset()
     };
 
     const handleClose = () => {
         setOpen(false);
-        setPlayCorrectSong(false);
-        setPlayIncorrectSong(false);
-        setShowCorrectSnackbar(false);
-        setShowIncorrectSnackbar(false);
+        reset()
         setAnswer('')
     };
 
     const handleSubmit = () => {
-        if (answer.toLowerCase().trim() === question.toLowerCase().trim()){
-            if (turnA) {
+        if (answer.toLowerCase().trim() === question.toLowerCase().trim()) {
+            if (isTeamAMove) {
                 updateScoreA(points)
             } else {
                 updateScoreB(points)
@@ -113,11 +114,12 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
 
     return (
         <div>
-            <div className={active ? "active-game-card" : "inactive-game-card"} onClick={active ? handleClickOpen : null}>
-                <p>{ points }</p>
+            <div className={active ? "active-game-card" : "inactive-game-card"}
+                 onClick={active ? handleClickOpen : null}>
+                <p>{points}</p>
             </div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
-                <DialogTitle id="form-dialog-title">{ hint }</DialogTitle>
+                <DialogTitle id="form-dialog-title">{hint}</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -139,16 +141,18 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
             </Dialog>
             <Snackbar open={showCorrectSnackbar} autoHideDuration={5000} onClose={handleCloseCorrectSnackbar}>
                 <Alert severity="success">
-                    { response(correctResponses) }
+                    {response(correctResponses)}
                 </Alert>
             </Snackbar>
             <Snackbar open={showIncorrectSnackbar} autoHideDuration={5000} onClose={handleCloseIncorrectSnackbar}>
                 <Alert severity="error">
-                    { response(incorrectResponses) }
+                    {response(incorrectResponses)}
                 </Alert>
             </Snackbar>
-            <Sound url={rubber_duck} volume={100} playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED} />
-            <Sound url={party_horn} volume={100} playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED} />
+            <Sound url={rubber_duck} volume={100}
+                   playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
+            <Sound url={party_horn} volume={100}
+                   playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
         </div>
     );
 }
