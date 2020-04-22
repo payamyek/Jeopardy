@@ -1,6 +1,6 @@
 import React , { useState } from "react"
-import CategoryColumn from "./CategoryColumn";
-import Leaderboard from "./Leaderboard";
+import CategoryColumn from "../CategoryColumn/CategoryColumn";
+import Leaderboard from "../Leaderboard/Leaderboard";
 import "./GameBoard.css"
 
 function GameBoard({ teams }) {

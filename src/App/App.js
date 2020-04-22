@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import GameBoard from './GameBoard';
+import GameBoard from '../GameBoard/GameBoard';
 import Sound from 'react-sound';
-import wiimusic from "./wiimusic.mp3"
+import wiimusic from "../wiimusic.mp3"
 
 function App() {
   return (

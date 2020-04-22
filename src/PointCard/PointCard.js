@@ -8,8 +8,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle'
-import rubber_duck from "./rubber_duck.mp3";
-import party_horn from "./party_horn.mp3"
+import rubber_duck from "../rubber_duck.mp3";
+import party_horn from "../party_horn.mp3"
 import Sound from "react-sound";
 import "./PointCard.css"
 
