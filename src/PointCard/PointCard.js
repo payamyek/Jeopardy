@@ -12,9 +12,12 @@ import rubber_duck from "../rubber_duck.mp3";
 import party_horn from "../party_horn.mp3"
 import Sound from "react-sound";
 import "./PointCard.css"
+import updateTeamAScore from "../ActionCreators/UpdateTeamAScore";
+import updateTeamBScore from "../ActionCreators/UpdateTeamBScore"
+import {connect} from "react-redux";
 
 
-function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTurn, isTeamAMove}) {
+function PointCard({points, hint, question, setTeamAScore, setTeamBScore, changeTurn, isTeamAMove}) {
 
     const [open, setOpen] = useState(false);
     const [answer, setAnswer] = useState('')
@@ -70,9 +73,9 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
     const handleSubmit = () => {
         if (answer.toLowerCase().trim() === question.toLowerCase().trim()) {
             if (isTeamAMove) {
-                updateScoreA(points)
+                setTeamAScore(points)
             } else {
-                updateScoreB(points)
+                setTeamBScore(points)
             }
             changeTurn()
             setActive(false)
@@ -157,4 +160,16 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
     );
 }
 
-export default PointCard;
+const mapStateToProps = ({ teamAScore }) => ({
+    teamAScore
+});
+
+const mapDispatchToProps = dispatch => ({
+    setTeamAScore: points => dispatch(updateTeamAScore(points)),
+    setTeamBScore: points => dispatch(updateTeamBScore(points))
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PointCard);

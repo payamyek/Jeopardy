@@ -3,18 +3,8 @@ import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import Leaderboard from "../Leaderboard/Leaderboard";
 import "./GameBoard.css"
 
-function GameBoard({ teams }) {
-    const [teamAScore, setTeamAScore] = useState(0)
-    const [teamBScore, setTeamBScore] = useState(0)
+function GameBoard({ teams, teamAScore, teamBScore}) {
     const [isTeamAMove, setIsTeamAMove] = useState(true)
-
-    let updateScoreA = (score) => {
-        setTeamAScore(teamAScore + score)
-    }
-
-    let updateScoreB = (score) => {
-        setTeamBScore(teamBScore + score)
-    }
 
     const data = {
         "Co-Workers": [
@@ -161,8 +151,6 @@ function GameBoard({ teams }) {
         for(let i = 0; i < 5; i++) {
             result[i] = <CategoryColumn category={columns[i]}
                                         data={data[columns[i]]}
-                                        updateScoreA={updateScoreA}
-                                        updateScoreB={updateScoreB}
                                         changeTurn={() => setIsTeamAMove(!isTeamAMove)}
                                         isTeamAMove={isTeamAMove}
             />
@@ -173,7 +161,7 @@ function GameBoard({ teams }) {
     return (
         <div className="game-board">
             { generateGameBoard() }
-            <Leaderboard teams={teams} scoreA={teamAScore} scoreB={teamBScore} turnA={isTeamAMove}/>
+            <Leaderboard teams={teams} turnA={isTeamAMove}/>
         </div>
     )
 }
