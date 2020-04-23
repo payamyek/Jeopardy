@@ -1,20 +1,9 @@
 import React , { useState } from "react"
-import CategoryColumn from "./CategoryColumn";
-import Leaderboard from "./Leaderboard";
+import CategoryColumn from "../CategoryColumn/CategoryColumn";
+import Leaderboard from "../Leaderboard/Leaderboard";
 import "./GameBoard.css"
 
 function GameBoard({ teams }) {
-    const [teamAScore, setTeamAScore] = useState(0)
-    const [teamBScore, setTeamBScore] = useState(0)
-    const [teamAMove, setTeamAMove] = useState(true)
-
-    let updateScoreA = (score) => {
-        setTeamAScore(teamAScore + score)
-    }
-
-    let updateScoreB = (score) => {
-        setTeamBScore(teamBScore + score)
-    }
 
     const data = {
         "Co-Workers": [
@@ -30,12 +19,12 @@ function GameBoard({ teams }) {
             },
             {
                 "Points": 300,
-                "Hint": "This person has been known to address Carl as Kevin",
+                "Hint": "This person faked an one storey fall on camera for views",
                 "Question": "Who is Jason?"
             },
             {
                 "Points": 400,
-                "Hint": "This person would ask you for a ride home if his chauffeur was not available ",
+                "Hint": "This person was deserted by his loyal companion and was left to starve",
                 "Question": "Who is Carl?"
             },
             {
@@ -101,71 +90,65 @@ function GameBoard({ teams }) {
         "Movie Quotes" : [
             {
                 "Points": 100,
-                "Hint": "To infinity and beyond!",
+                "Hint": "\"To infinity and beyond!\"",
                 "Question": "What is toy story?"
             },
             {
                 "Points": 200,
-                "Hint": "I'll be back",
+                "Hint": "\"I'll be back\"",
                 "Question": "What is the terminator?"
             },
             {
                 "Points": 300,
-                "Hint": "I am your father",
+                "Hint": "\"I am your father\"",
                 "Question": "What is starwars?"
             },
             {
                 "Points": 400,
-                "Hint": "Just keep swimming",
+                "Hint": "\"Just keep swimming\"",
                 "Question": "What is finding nemo?"
             },
             {
                 "Points": 500,
-                "Hint": "I'm the king of the world",
+                "Hint": "\"I'm the king of the world\"",
                 "Question": "What is the titanic?"
             }
         ],
         "Countries" : [
             {
                 "Points": 100,
-                "Hint": "Eh, pass me the syrup!",
+                "Hint": "\"Eh, pass me the syrup!\"",
                 "Question": "What is canada?"
             },
             {
                 "Points": 200,
-                "Hint": "Why is the hospital so expensive, Bob?",
+                "Hint": "\"Why is the hospital so expensive, Bob?\"",
                 "Question": "What is america?"
             },
             {
                 "Points": 300,
-                "Hint": "Hey, it's santa!",
-                "Question": "What is the north pole?"
-            },
-            {
-                "Points": 400,
-                "Hint": "Yo Jim, why is that kangaroo chasing us?",
+                "Hint": "\"Yo Jim, why is that kangaroo chasing us?\"",
                 "Question": "What is australia?"
             },
             {
-                "Points": 500,
-                "Hint": "O Romeo, Romeo, wherefore art thou Romeo?",
+                "Points": 400,
+                "Hint": "\"Why is the pizza tilted?\"",
                 "Question": "What is italy?"
+            },
+            {
+                "Points": 500,
+                "Hint": "\"Why is their national animal an unicorn?\"",
+                "Question": "What is scotland?"
             }
         ]
     }
 
-    let columns = Object.keys(data)
 
     let generateGameBoard = () => {
+        let columns = Object.keys(data)
         let result = []
         for(let i = 0; i < 5; i++) {
-            result[i] = <CategoryColumn category={columns[i]}
-                                        data={data[columns[i]]}
-                                        updateScoreA={updateScoreA}
-                                        updateScoreB={updateScoreB}
-                                        changeTurn={() => setTeamAMove(!teamAMove)}
-                                        turnA={teamAMove}
-            />
+            result[i] = <CategoryColumn category={columns[i]} data={data[columns[i]]} />
         }
         return result
     }
@@ -173,7 +156,7 @@ function GameBoard({ teams }) {
     return (
         <div className="game-board">
             { generateGameBoard() }
-            <Leaderboard teams={teams} scoreA={teamAScore} scoreB={teamBScore} turnA={teamAMove}/>
+            <Leaderboard teams={teams} />
         </div>
     )
 }

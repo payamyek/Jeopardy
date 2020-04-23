@@ -8,15 +8,24 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle'
+import rubber_duck from "../rubber_duck.mp3";
+import party_horn from "../party_horn.mp3"
+import Sound from "react-sound";
 import "./PointCard.css"
+import updateTeamAScore from "../ActionCreators/UpdateTeamAScore";
+import updateTeamBScore from "../ActionCreators/UpdateTeamBScore";
+import updateTeamAMove from  "../ActionCreators/UpdateTeamAMove"
+import {connect} from "react-redux";
 
 
-function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTurn, turnA}) {
+function PointCard(props) {
 
     const [open, setOpen] = useState(false);
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
     const [showCorrectSnackbar, setShowCorrectSnackbar] = useState(false)
+    const [playCorrectSong, setPlayCorrectSong] = useState(false)
+    const [playIncorrectSong, setPlayIncorrectSong] = useState(false)
     const [showIncorrectSnackbar, setShowIncorrectSnackbar] = useState(false)
 
     const correctResponses = [
@@ -44,29 +53,42 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
         return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
 
+    const reset = () => {
+        setPlayCorrectSong(false);
+        setPlayIncorrectSong(false);
+        setShowCorrectSnackbar(false);
+        setShowIncorrectSnackbar(false);
+    }
+
     const handleClickOpen = () => {
         setOpen(true);
+        reset()
     };
 
     const handleClose = () => {
         setOpen(false);
+        reset()
+        setAnswer('')
     };
 
     const handleSubmit = () => {
-        if (answer.toLowerCase() === question.toLowerCase()){
-            if (turnA){
-                updateScoreA(points)
-            }else {
-                updateScoreB(points)
+        if (answer.toLowerCase().trim() === props.question.toLowerCase().trim()) {
+            if (props.teamAMove) {
+                props.setTeamAScore(props.points)
+            } else {
+                props.setTeamBScore(props.points)
             }
-            changeTurn()
+            props.setTeamAMove()
             setActive(false)
             handleClose()
             handleCorrectAnswer()
+            setPlayCorrectSong(true)
         } else {
-            changeTurn()
+            props.setTeamAMove()
             handleClose()
             handleIncorrectAnswer()
+            setPlayIncorrectSong(true)
+            setAnswer('')
         }
     };
 
@@ -83,6 +105,7 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
             return;
         }
         setShowCorrectSnackbar(false);
+        setPlayCorrectSong(false)
     };
 
     const handleCloseIncorrectSnackbar = (event, reason) => {
@@ -90,15 +113,17 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
             return;
         }
         setShowIncorrectSnackbar(false);
+        setPlayIncorrectSong(false);
     };
 
     return (
         <div>
-            <div className={active ? "active-game-card" : "inactive-game-card"} onClick={active ? handleClickOpen : null}>
-                <p>{ points }</p>
+            <div className={active ? "active-game-card" : "inactive-game-card"}
+                 onClick={active ? handleClickOpen : null}>
+                <p>{ props.points }</p>
             </div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
-                <DialogTitle id="form-dialog-title">{ hint }</DialogTitle>
+                <DialogTitle id="form-dialog-title">{ props.hint }</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -119,17 +144,34 @@ function PointCard({points, hint, question, updateScoreA, updateScoreB, changeTu
                 </DialogActions>
             </Dialog>
             <Snackbar open={showCorrectSnackbar} autoHideDuration={5000} onClose={handleCloseCorrectSnackbar}>
-                <Alert onClose={handleCloseCorrectSnackbar} severity="success">
-                    { response(correctResponses) }
+                <Alert severity="success">
+                    {response(correctResponses)}
                 </Alert>
             </Snackbar>
             <Snackbar open={showIncorrectSnackbar} autoHideDuration={5000} onClose={handleCloseIncorrectSnackbar}>
-                <Alert onClose={handleCloseIncorrectSnackbar} severity="error">
-                    { response(incorrectResponses) }
+                <Alert severity="error">
+                    {response(incorrectResponses)}
                 </Alert>
             </Snackbar>
+            <Sound url={rubber_duck} volume={100}
+                   playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
+            <Sound url={party_horn} volume={100}
+                   playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
         </div>
     );
 }
 
-export default PointCard;
+const mapStateToProps = ({ teamAMove }) => ({
+    teamAMove
+});
+
+const mapDispatchToProps = dispatch => ({
+    setTeamAScore: points => dispatch(updateTeamAScore(points)),
+    setTeamBScore: points => dispatch(updateTeamBScore(points)),
+    setTeamAMove: move => dispatch(updateTeamAMove(move))
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PointCard);
