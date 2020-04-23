@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import GameBoard from '../GameBoard/GameBoard';
 import Sound from 'react-sound';
-import wiimusic from "../wiimusic.mp3"
+import wiimusic from "../../Resources/wiimusic.mp3"
 import { Provider } from "react-redux"
-import store from "../store"
+import store from "../../Redux/store"
 
 function App() {
   return (

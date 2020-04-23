@@ -8,13 +8,13 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle'
-import rubber_duck from "../rubber_duck.mp3";
-import party_horn from "../party_horn.mp3"
+import rubber_duck from "../../Resources/rubber_duck.mp3";
+import party_horn from "../../Resources/party_horn.mp3"
 import Sound from "react-sound";
 import "./PointCard.css"
-import updateTeamAScore from "../ActionCreators/UpdateTeamAScore";
-import updateTeamBScore from "../ActionCreators/UpdateTeamBScore";
-import updateTeamAMove from  "../ActionCreators/UpdateTeamAMove"
+import updateTeamAScore from "../../Redux/ActionCreators/UpdateTeamAScore";
+import updateTeamBScore from "../../Redux/ActionCreators/UpdateTeamBScore";
+import updateTeamAMove from  "../../Redux/ActionCreators/UpdateTeamAMove"
 import {connect} from "react-redux";
 
 
