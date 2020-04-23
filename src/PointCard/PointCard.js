@@ -13,11 +13,12 @@ import party_horn from "../party_horn.mp3"
 import Sound from "react-sound";
 import "./PointCard.css"
 import updateTeamAScore from "../ActionCreators/UpdateTeamAScore";
-import updateTeamBScore from "../ActionCreators/UpdateTeamBScore"
+import updateTeamBScore from "../ActionCreators/UpdateTeamBScore";
+import updateTeamAMove from  "../ActionCreators/UpdateTeamAMove"
 import {connect} from "react-redux";
 
 
-function PointCard({points, hint, question, setTeamAScore, setTeamBScore, changeTurn, isTeamAMove}) {
+function PointCard(props) {
 
     const [open, setOpen] = useState(false);
     const [answer, setAnswer] = useState('')
@@ -71,19 +72,19 @@ function PointCard({points, hint, question, setTeamAScore, setTeamBScore, change
     };
 
     const handleSubmit = () => {
-        if (answer.toLowerCase().trim() === question.toLowerCase().trim()) {
-            if (isTeamAMove) {
-                setTeamAScore(points)
+        if (answer.toLowerCase().trim() === props.question.toLowerCase().trim()) {
+            if (props.teamAMove) {
+                props.setTeamAScore(props.points)
             } else {
-                setTeamBScore(points)
+                props.setTeamBScore(props.points)
             }
-            changeTurn()
+            props.setTeamAMove()
             setActive(false)
             handleClose()
             handleCorrectAnswer()
             setPlayCorrectSong(true)
         } else {
-            changeTurn()
+            props.setTeamAMove()
             handleClose()
             handleIncorrectAnswer()
             setPlayIncorrectSong(true)
@@ -119,10 +120,10 @@ function PointCard({points, hint, question, setTeamAScore, setTeamBScore, change
         <div>
             <div className={active ? "active-game-card" : "inactive-game-card"}
                  onClick={active ? handleClickOpen : null}>
-                <p>{points}</p>
+                <p>{ props.points }</p>
             </div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
-                <DialogTitle id="form-dialog-title">{hint}</DialogTitle>
+                <DialogTitle id="form-dialog-title">{ props.hint }</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -160,13 +161,14 @@ function PointCard({points, hint, question, setTeamAScore, setTeamBScore, change
     );
 }
 
-const mapStateToProps = ({ teamAScore }) => ({
-    teamAScore
+const mapStateToProps = ({ teamAMove }) => ({
+    teamAMove
 });
 
 const mapDispatchToProps = dispatch => ({
     setTeamAScore: points => dispatch(updateTeamAScore(points)),
-    setTeamBScore: points => dispatch(updateTeamBScore(points))
+    setTeamBScore: points => dispatch(updateTeamBScore(points)),
+    setTeamAMove: move => dispatch(updateTeamAMove(move))
 });
 
 export default connect(

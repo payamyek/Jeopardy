@@ -3,8 +3,7 @@ import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import Leaderboard from "../Leaderboard/Leaderboard";
 import "./GameBoard.css"
 
-function GameBoard({ teams, teamAScore, teamBScore}) {
-    const [isTeamAMove, setIsTeamAMove] = useState(true)
+function GameBoard({ teams }) {
 
     const data = {
         "Co-Workers": [
@@ -149,11 +148,7 @@ function GameBoard({ teams, teamAScore, teamBScore}) {
         let columns = Object.keys(data)
         let result = []
         for(let i = 0; i < 5; i++) {
-            result[i] = <CategoryColumn category={columns[i]}
-                                        data={data[columns[i]]}
-                                        changeTurn={() => setIsTeamAMove(!isTeamAMove)}
-                                        isTeamAMove={isTeamAMove}
-            />
+            result[i] = <CategoryColumn category={columns[i]} data={data[columns[i]]} />
         }
         return result
     }
@@ -161,7 +156,7 @@ function GameBoard({ teams, teamAScore, teamBScore}) {
     return (
         <div className="game-board">
             { generateGameBoard() }
-            <Leaderboard teams={teams} turnA={isTeamAMove}/>
+            <Leaderboard teams={teams} />
         </div>
     )
 }
