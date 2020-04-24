@@ -14,7 +14,8 @@ import Sound from "react-sound";
 import "./PointCard.css"
 import updateTeamAScore from "../../Redux/ActionCreators/UpdateTeamAScore";
 import updateTeamBScore from "../../Redux/ActionCreators/UpdateTeamBScore";
-import updateTeamAMove from  "../../Redux/ActionCreators/UpdateTeamAMove"
+import updateTeamAMove from  "../../Redux/ActionCreators/UpdateTeamAMove";
+import snackbarResponse from "../../Resources/snackbarResponse"
 import {connect} from "react-redux";
 
 
@@ -28,30 +29,9 @@ function PointCard(props) {
     const [playIncorrectSong, setPlayIncorrectSong] = useState(false)
     const [showIncorrectSnackbar, setShowIncorrectSnackbar] = useState(false)
 
-    const correctResponses = [
-        "Wow, how did you get that one?",
-        "Are you cheating?",
-        "There is no way, are you a robot?",
-        "That one was way too easy, no need to celebrate.",
-        "I might have under-estimated you young jedi"
-    ]
+    const response = arr => arr[_.random(0, arr.length - 1)];
 
-    const incorrectResponses = [
-        "It isn't the first time you have failed us soldier",
-        "That one was easy, come on now!",
-        "Are you sure, you didn't know it?",
-        "Luke I am not your father",
-        "Someone disconnect their internet"
-    ]
-
-    const response = (arr) => {
-        let num = _.random(0, arr.length - 1)
-        return arr[num]
-    }
-
-    function Alert(props) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-    }
+    const Alert = props => <MuiAlert elevation={6} variant="filled" {...props}/>;
 
     const reset = () => {
         setPlayCorrectSong(false);
@@ -145,12 +125,12 @@ function PointCard(props) {
             </Dialog>
             <Snackbar open={showCorrectSnackbar} autoHideDuration={5000} onClose={handleCloseCorrectSnackbar}>
                 <Alert severity="success">
-                    {response(correctResponses)}
+                    {response(snackbarResponse["correct"])}
                 </Alert>
             </Snackbar>
             <Snackbar open={showIncorrectSnackbar} autoHideDuration={5000} onClose={handleCloseIncorrectSnackbar}>
                 <Alert severity="error">
-                    {response(incorrectResponses)}
+                    {response(snackbarResponse["incorrect"])}
                 </Alert>
             </Snackbar>
             <Sound url={rubber_duck} volume={100}
