@@ -10,7 +10,7 @@ function App() {
   return (
       <Provider store={store}>
         <div className="App">
-          <GameBoard teams={["Zoomers", "Boomers"]}/>
+          <GameBoard teams={["Copras", "Penguins"]}/>
           <Sound url={wiimusic} autoLoad={true} loop={true} volume={100} playStatus={Sound.status.PLAYING} />
         </div>
       </Provider>
