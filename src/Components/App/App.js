@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import GameBoard from '../GameBoard/GameBoard';
+import GameBoard from '../GameBoard';
 import Sound from 'react-sound';
 import wiimusic from "../../Assets/wiimusic.mp3"
 import {Provider} from "react-redux"

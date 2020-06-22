@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryCard from "../CategoryCard/CategoryCard";
-import PointCard from "../PointCard/PointCard";
+import CategoryCard from "./CategoryCard";
+import PointCard from "./PointCard";
 import {Col} from "reactstrap"
 
 

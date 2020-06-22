@@ -4,15 +4,15 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import {Card, CardText, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 
-import rubber_duck from "../../Assets/rubber_duck.mp3";
-import party_horn from "../../Assets/party_horn.mp3";
-import snackbarResponse from "../../Assets/snackbarResponse";
+import rubber_duck from "../Assets/rubber_duck.mp3";
+import party_horn from "../Assets/party_horn.mp3";
+import snackbarResponse from "../Assets/snackbarResponse";
 
 import Sound from "react-sound";
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
 
-import {updatePoints, updateTeamAMove} from "../../Redux/ActionCreators/UpdateGameState";
+import {updatePoints, updateTeamAMove} from "../Redux/ActionCreators/UpdateGameState";
 
 import {connect} from "react-redux";
 
