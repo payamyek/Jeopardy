@@ -1,21 +1,29 @@
 import React from "react"
-import "./Leaderboard.css"
+import {Col} from "reactstrap";
 import {connect} from "react-redux";
 
-function Leaderboard({teams, teamAScore, teamBScore, teamAMove}) {
+function Leaderboard({teams, gameState}) {
+
+    let h1StyleDefault =  {
+        fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'white', fontSize: 'xx-large'
+    };
+
+    let h1StyleTurn =  {
+        fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'chartreuse', fontSize: 'xx-large'
+    };
+
+    let {teamAMove, teamAPoints, teamBPoints} = gameState
+
     return (
-        <div className="leaderboard">
-            <h1 className={ teamAMove ? "leaderboard-turn" : "leaderboard-default" }>{teams[0]} {teamAScore}</h1>
-            <h1 className={ !teamAMove ? "leaderboard-turn" : "leaderboard-default"}>{teams[1]} {teamBScore}</h1>
-        </div>
+        <Col className="my-auto">
+            <h1 className="pl-5" style={teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[0]} {teamAPoints}</h1>
+            <h1 className="pl-5" style={!teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[1]} {teamBPoints}</h1>
+        </Col>
     )
 }
 
-const mapStateToProps = ({ teamAScore, teamBScore, teamAMove }) => ({
-    teamAScore,
-    teamBScore,
-    teamAMove
+const mapStateToProps = ({gameState}) => ({
+    gameState
 });
-
 
 export default connect(mapStateToProps)(Leaderboard);

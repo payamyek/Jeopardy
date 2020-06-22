@@ -1,11 +1,23 @@
-import React from "react"
-import "./CategoryCard.css"
+import React from "react";
+import {Card, CardText} from "reactstrap";
 
-function CategoryCard({ category }){
+
+let cardStyle = {
+    backgroundColor: '#078a83'
+}
+
+let cardTextStyle = {
+    fontWeight: 'bold', backgroundColor: '#078a83', color: 'white', fontSize: 'xx-large', fontFamily: 'Inconsolata'
+}
+
+
+let CategoryCard = ({ category }) =>{
     return (
-        <div className="category-card">
-            <p>{ category }</p>
-        </div>
+         <Card style={cardStyle}>
+             <CardText style={cardTextStyle} className='category-card-body text-center py-3'>
+                { category }
+             </CardText>
+        </Card>
     );
 }
 

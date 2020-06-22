@@ -1,26 +1,37 @@
 import React from "react"
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import Leaderboard from "../Leaderboard/Leaderboard";
-import data from "../../Resources/sampleGameData";
-import "./GameBoard.css"
+import data from "../../Assets/sampleGameData";
+import {Row} from "reactstrap"
+import {connect} from "react-redux";
+import GameOver from "../GameOver";
 
-function GameBoard({teams}) {
 
+function GameBoard(props) {
     let generateGameBoard = () => {
         let columns = Object.keys(data)
         let result = []
         for (let i = 0; i < 5; i++) {
-            result[i] = <CategoryColumn category={columns[i]} data={data[columns[i]]}/>
+            result[i] = <CategoryColumn categoryIndex={i} category={columns[i]} data={data[columns[i]]}/>
         }
         return result
     }
 
     return (
-        <div className="game-board">
-            {generateGameBoard()}
-            <Leaderboard teams={teams}/>
-        </div>
+        <Row>
+            {props.gameState.winner ? <GameOver/> :
+                <>
+                    {generateGameBoard()}
+                    <Leaderboard teams={props.teams}/>
+                </>
+            }
+        </Row>
     )
 }
 
-export default GameBoard;
+const mapStateToProps = ({gameState}) => ({
+    gameState
+});
+
+
+export default connect(mapStateToProps)(GameBoard);

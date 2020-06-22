@@ -1,84 +1,63 @@
-import React, {useState} from "react"
-import _ from "lodash"
+import React, {useEffect, useState} from "react";
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle'
-import rubber_duck from "../../Resources/rubber_duck.mp3";
-import party_horn from "../../Resources/party_horn.mp3"
+import {Card, CardText, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
+
+import rubber_duck from "../../Assets/rubber_duck.mp3";
+import party_horn from "../../Assets/party_horn.mp3";
+import snackbarResponse from "../../Assets/snackbarResponse";
+
 import Sound from "react-sound";
-import "./PointCard.css"
-import updateTeamAScore from "../../Redux/ActionCreators/UpdateTeamAScore";
-import updateTeamBScore from "../../Redux/ActionCreators/UpdateTeamBScore";
-import updateTeamAMove from  "../../Redux/ActionCreators/UpdateTeamAMove";
-import snackbarResponse from "../../Resources/snackbarResponse"
+import {random} from "lodash";
+import {compareTwoStrings} from "string-similarity";
+
+import {updatePoints, updateTeamAMove} from "../../Redux/ActionCreators/UpdateGameState";
+
 import {connect} from "react-redux";
 
 
 function PointCard(props) {
+    const [showModal, setShowModal] = useState(false);
+    const toggle = () => setShowModal(!showModal)
 
-    const [open, setOpen] = useState(false);
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
+
+    const [showIncorrectSnackbar, setShowIncorrectSnackbar] = useState(false)
     const [showCorrectSnackbar, setShowCorrectSnackbar] = useState(false)
+
     const [playCorrectSong, setPlayCorrectSong] = useState(false)
     const [playIncorrectSong, setPlayIncorrectSong] = useState(false)
-    const [showIncorrectSnackbar, setShowIncorrectSnackbar] = useState(false)
 
-    const response = arr => arr[_.random(0, arr.length - 1)];
+    const randomResponse = arr => arr[random(0, arr.length - 1)];
 
     const Alert = props => <MuiAlert elevation={6} variant="filled" {...props}/>;
 
-    const reset = () => {
-        setPlayCorrectSong(false);
-        setPlayIncorrectSong(false);
-        setShowCorrectSnackbar(false);
-        setShowIncorrectSnackbar(false);
-    }
-
-    const handleClickOpen = () => {
-        setOpen(true);
-        reset()
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-        reset()
-        setAnswer('')
-    };
+    useEffect(() => {
+        if (showModal) {
+            setShowIncorrectSnackbar(false)
+            setShowCorrectSnackbar(false)
+            setPlayCorrectSong(false)
+            setPlayIncorrectSong(false)
+        }
+    }, [showModal])
 
     const handleSubmit = () => {
-        if (answer.toLowerCase().trim() === props.question.toLowerCase().trim()) {
-            if (props.teamAMove) {
-                props.setTeamAScore(props.points)
-            } else {
-                props.setTeamBScore(props.points)
-            }
-            props.setTeamAMove()
+        const diceCoefficient = compareTwoStrings(answer.toLowerCase().trim(), props.question.toLowerCase().trim())
+
+        if (diceCoefficient >= 0.8) {
+            props.updatePoints(props.categoryIndex, props.points)
+            setShowCorrectSnackbar(!showCorrectSnackbar)
+            setPlayCorrectSong(!playCorrectSong)
             setActive(false)
-            handleClose()
-            handleCorrectAnswer()
-            setPlayCorrectSong(true)
         } else {
-            props.setTeamAMove()
-            handleClose()
-            handleIncorrectAnswer()
-            setPlayIncorrectSong(true)
-            setAnswer('')
+            props.updateTurn()
+            setShowIncorrectSnackbar(!showIncorrectSnackbar)
+            setPlayIncorrectSong(!playIncorrectSong)
         }
+        setShowModal(!showModal)
     };
-
-    const handleCorrectAnswer = () => {
-        setShowCorrectSnackbar(true)
-    }
-
-    const handleIncorrectAnswer = () => {
-        setShowIncorrectSnackbar(true)
-    }
 
     const handleCloseCorrectSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -96,59 +75,76 @@ function PointCard(props) {
         setPlayIncorrectSong(false);
     };
 
+    const onMouseOver = e => {
+        if (active) {
+            e.target.style.background = '#41e3da'
+        }
+    }
+
+    const onMouseOut = e => {
+        if (active) {
+            e.target.style.background = 'lightseagreen'
+        }
+    }
+
+    let cardBodyStyle = {
+        backgroundColor: active ? 'lightseagreen' : 'black'
+    }
+
+    let cardTextStyle = {
+        backgroundColor: active ? 'lightseagreen' : 'black',
+        color: 'white',
+        borderRadius: '2%',
+        fontSize: 'xx-large',
+        fontFamily: 'Inconsolata',
+        textDecoration: active ? 'none' : 'line-through'
+    }
+
     return (
-        <div>
-            <div className={active ? "active-game-card" : "inactive-game-card"}
-                 onClick={active ? handleClickOpen : null}>
-                <p>{ props.points }</p>
-            </div>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
-                <DialogTitle id="form-dialog-title">{ props.hint }</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        id="name"
-                        label="Question"
-                        value={answer}
-                        onChange={e => setAnswer(e.target.value)}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleSubmit} color="primary">
-                        Submit
-                    </Button>
-                </DialogActions>
-            </Dialog>
+        <>
+            <Card className="my-2" style={cardBodyStyle}>
+                <CardText className='text-center py-5' onMouseOver={onMouseOver}  onMouseOut={onMouseOut}
+                          style={cardTextStyle}
+                          onClick={active ? toggle : null}>
+                    {props.points}
+                </CardText>
+                <Modal isOpen={showModal} toggle={toggle} centered>
+                    <ModalHeader>{props.category}</ModalHeader>
+                    <ModalBody>
+                        <p style={{fontSize: 'large'}}>{props.hint}</p>
+                        <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={handleSubmit}>Submit</Button>
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+                <Sound url={rubber_duck} volume={100}
+                       playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
+                <Sound url={party_horn} volume={100}
+                       playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
+            </Card>
             <Snackbar open={showCorrectSnackbar} autoHideDuration={5000} onClose={handleCloseCorrectSnackbar}>
-                <Alert severity="success">
-                    {response(snackbarResponse["correct"])}
+                <Alert style={{fontSize: 'medium'}} severity="success">{
+                    randomResponse(snackbarResponse["correct"])}
                 </Alert>
             </Snackbar>
             <Snackbar open={showIncorrectSnackbar} autoHideDuration={5000} onClose={handleCloseIncorrectSnackbar}>
-                <Alert severity="error">
-                    {response(snackbarResponse["incorrect"])}
+                <Alert style={{fontSize: 'medium'}} severity="error">
+                    {randomResponse(snackbarResponse["incorrect"])}
                 </Alert>
             </Snackbar>
-            <Sound url={rubber_duck} volume={100}
-                   playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
-            <Sound url={party_horn} volume={100}
-                   playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
-        </div>
+        </>
     );
 }
 
-const mapStateToProps = ({ teamAMove }) => ({
-    teamAMove
+const mapStateToProps = ({gameState}) => ({
+    gameState
 });
 
 const mapDispatchToProps = dispatch => ({
-    setTeamAScore: points => dispatch(updateTeamAScore(points)),
-    setTeamBScore: points => dispatch(updateTeamBScore(points)),
-    setTeamAMove: move => dispatch(updateTeamAMove(move))
+    updatePoints: (category, points) => dispatch(updatePoints(category, points)),
+    updateTurn: () => dispatch(updateTeamAMove())
 });
 
 export default connect(
