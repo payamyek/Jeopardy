@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import {toast} from "react-toastify";
 import {Card, CardText, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 
 import rubber_duck from "../Assets/rubber_duck.mp3";
@@ -24,20 +23,13 @@ function PointCard(props) {
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
 
-    const [showIncorrectSnackbar, setShowIncorrectSnackbar] = useState(false)
-    const [showCorrectSnackbar, setShowCorrectSnackbar] = useState(false)
-
     const [playCorrectSong, setPlayCorrectSong] = useState(false)
     const [playIncorrectSong, setPlayIncorrectSong] = useState(false)
 
     const randomResponse = arr => arr[random(0, arr.length - 1)];
 
-    const Alert = props => <MuiAlert elevation={6} variant="filled" {...props}/>;
-
     useEffect(() => {
         if (showModal) {
-            setShowIncorrectSnackbar(false)
-            setShowCorrectSnackbar(false)
             setPlayCorrectSong(false)
             setPlayIncorrectSong(false)
         }
@@ -48,31 +40,15 @@ function PointCard(props) {
 
         if (diceCoefficient >= 0.8) {
             props.updatePoints(props.categoryIndex, props.points)
-            setShowCorrectSnackbar(!showCorrectSnackbar)
+            toast.success(randomResponse(snackbarResponse["correct"]));
             setPlayCorrectSong(!playCorrectSong)
             setActive(false)
         } else {
             props.updateTurn()
-            setShowIncorrectSnackbar(!showIncorrectSnackbar)
+            toast.error(randomResponse(snackbarResponse["incorrect"]));
             setPlayIncorrectSong(!playIncorrectSong)
         }
         setShowModal(!showModal)
-    };
-
-    const handleCloseCorrectSnackbar = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setShowCorrectSnackbar(false);
-        setPlayCorrectSong(false)
-    };
-
-    const handleCloseIncorrectSnackbar = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setShowIncorrectSnackbar(false);
-        setPlayIncorrectSong(false);
     };
 
     const onMouseOver = e => {
@@ -103,7 +79,7 @@ function PointCard(props) {
     return (
         <>
             <Card className="my-2" style={cardBodyStyle}>
-                <CardText className='text-center py-5' onMouseOver={onMouseOver}  onMouseOut={onMouseOut}
+                <CardText className='text-center py-5' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
                           style={cardTextStyle}
                           onClick={active ? toggle : null}>
                     {props.points}
@@ -124,16 +100,6 @@ function PointCard(props) {
                 <Sound url={party_horn} volume={100}
                        playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
             </Card>
-            <Snackbar open={showCorrectSnackbar} autoHideDuration={5000} onClose={handleCloseCorrectSnackbar}>
-                <Alert style={{fontSize: 'medium'}} severity="success">{
-                    randomResponse(snackbarResponse["correct"])}
-                </Alert>
-            </Snackbar>
-            <Snackbar open={showIncorrectSnackbar} autoHideDuration={5000} onClose={handleCloseIncorrectSnackbar}>
-                <Alert style={{fontSize: 'medium'}} severity="error">
-                    {randomResponse(snackbarResponse["incorrect"])}
-                </Alert>
-            </Snackbar>
         </>
     );
 }
