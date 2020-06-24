@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Button from '@material-ui/core/Button';
-import {toast} from "react-toastify";
 import {Card, CardText, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
+import displayNotification from "./ToastNotification"
 
 import rubber_duck from "../Assets/rubber_duck.mp3";
 import party_horn from "../Assets/party_horn.mp3";
@@ -40,12 +40,12 @@ function PointCard(props) {
 
         if (diceCoefficient >= 0.8) {
             props.updatePoints(props.categoryIndex, props.points)
-            toast.success(randomResponse(snackbarResponse["correct"]));
+            displayNotification(randomResponse(snackbarResponse["correct"]), true);
             setPlayCorrectSong(!playCorrectSong)
             setActive(false)
         } else {
             props.updateTurn()
-            toast.error(randomResponse(snackbarResponse["incorrect"]));
+            displayNotification(randomResponse(snackbarResponse["incorrect"]), false);
             setPlayIncorrectSong(!playIncorrectSong)
         }
         setShowModal(!showModal)
