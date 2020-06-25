@@ -92,7 +92,6 @@ function PointCard(props) {
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={handleSubmit}>Submit</Button>
-                        <Button color="secondary" onClick={toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
                 <Sound url={rubber_duck} volume={100}
