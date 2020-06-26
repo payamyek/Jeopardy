@@ -1,5 +1,4 @@
-import React from 'react';
-import './App.css';
+import React from "react"
 import GameBoard from '../GameBoard';
 import Sound from 'react-sound';
 import wiimusic from "../../Assets/wiimusic.mp3"
