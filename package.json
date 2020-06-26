@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.9",
     "@material-ui/lab": "^4.0.0-alpha.49",
+    "@mdi/react": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -20,6 +21,7 @@
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "react-sound": "^1.2.0",
+    "react-toastify": "^6.0.6",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "serve": "^11.3.2",
@@ -46,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@mdi/js": "^5.3.45"
   }
 }
