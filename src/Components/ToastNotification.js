@@ -16,7 +16,7 @@ function Body({message, icon}) {
 }
 
 export default function displayNotification(message, type) {
-    if (type === true) {
+    if (type) {
         toast.success(<Body message={message} icon={mdiEmoticonExcitedOutline}/>)
     } else {
         toast.error(<Body message={message} icon={mdiEmoticonDeadOutline}/>)
