@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import {Card, CardText, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
 import displayNotification from "./ToastNotification"
@@ -7,7 +7,7 @@ import rubber_duck from "../Assets/rubber_duck.mp3";
 import party_horn from "../Assets/party_horn.mp3";
 import snackbarResponse from "../Assets/snackbarResponse";
 
-import Sound from "react-sound";
+import useSound from 'use-sound';
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
 
@@ -23,17 +23,10 @@ function PointCard(props) {
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
 
-    const [playCorrectSong, setPlayCorrectSong] = useState(false)
-    const [playIncorrectSong, setPlayIncorrectSong] = useState(false)
+    const [playCorrectSong] = useSound(rubber_duck);
+    const [playIncorrectSong] = useSound(party_horn)
 
     const randomResponse = arr => arr[random(0, arr.length - 1)];
-
-    useEffect(() => {
-        if (showModal) {
-            setPlayCorrectSong(false)
-            setPlayIncorrectSong(false)
-        }
-    }, [showModal])
 
     const handleSubmit = () => {
         const diceCoefficient = compareTwoStrings(answer.toLowerCase().trim(), props.question.toLowerCase().trim())
@@ -41,14 +34,17 @@ function PointCard(props) {
         if (diceCoefficient >= 0.8) {
             props.updatePoints(props.categoryIndex, props.points)
             displayNotification(randomResponse(snackbarResponse["correct"]), true);
-            setPlayCorrectSong(!playCorrectSong)
+            playCorrectSong()
             setActive(false)
+            setShowModal(!showModal)
         } else {
+            if (props.gameState.stealActive === true) {
+                setShowModal(!showModal)
+            }
             props.updateTurn()
             displayNotification(randomResponse(snackbarResponse["incorrect"]), false);
-            setPlayIncorrectSong(!playIncorrectSong)
+            playIncorrectSong()
         }
-        setShowModal(!showModal)
     };
 
     const onMouseOver = e => {
@@ -94,10 +90,6 @@ function PointCard(props) {
                         <Button color="primary" onClick={handleSubmit}>Submit</Button>
                     </ModalFooter>
                 </Modal>
-                <Sound url={rubber_duck} volume={100}
-                       playStatus={playCorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
-                <Sound url={party_horn} volume={100}
-                       playStatus={playIncorrectSong ? Sound.status.PLAYING : Sound.status.STOPPED}/>
             </Card>
         </>
     );
