@@ -3,6 +3,6 @@ export function updatePoints(category, points) {
 }
 
 export function updateTeamAMove() {
-    return {type: "FLIP"}
+    return {type: "INCORRECT"}
 }
 
