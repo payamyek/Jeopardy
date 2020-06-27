@@ -11,10 +11,6 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import rubber_duck from "../../Resources/rubber_duck.mp3";
 import party_horn from "../../Resources/party_horn.mp3"
 import Sound from "react-sound";
-import "./PointCard.css"
-import updateTeamAScore from "../../Redux/ActionCreators/UpdateTeamAScore";
-import updateTeamBScore from "../../Redux/ActionCreators/UpdateTeamBScore";
-import updateTeamAMove from  "../../Redux/ActionCreators/UpdateTeamAMove"
 import {connect} from "react-redux";
 
 
