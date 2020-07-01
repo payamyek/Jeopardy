@@ -10,9 +10,7 @@ import snackbarResponse from "../Assets/snackbarResponse";
 import useSound from 'use-sound';
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
-
 import {updatePoints, updateTeamAMove} from "../Redux/ActionCreators/UpdateGameState";
-
 import {connect} from "react-redux";
 
 
@@ -23,8 +21,8 @@ function PointCard(props) {
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
 
-    const [playCorrectSong] = useSound(rubber_duck);
-    const [playIncorrectSong] = useSound(party_horn)
+    const [playCorrectSong] = useSound(rubber_duck, {volume: props.settings.fxVolume / 100});
+    const [playIncorrectSong] = useSound(party_horn, {volume: props.settings.fxVolume / 100})
 
     const randomResponse = arr => arr[random(0, arr.length - 1)];
 
@@ -48,15 +46,11 @@ function PointCard(props) {
     };
 
     const onMouseOver = e => {
-        if (active) {
-            e.target.style.background = '#41e3da'
-        }
+        active && (e.target.style.background = '#41e3da')
     }
 
     const onMouseOut = e => {
-        if (active) {
-            e.target.style.background = 'lightseagreen'
-        }
+        active && (e.target.style.background = 'lightseagreen')
     }
 
     let cardBodyStyle = {
@@ -95,8 +89,9 @@ function PointCard(props) {
     );
 }
 
-const mapStateToProps = ({gameState}) => ({
-    gameState
+const mapStateToProps = ({gameState, settings}) => ({
+    gameState,
+    settings
 });
 
 const mapDispatchToProps = dispatch => ({
