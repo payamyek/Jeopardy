@@ -6,6 +6,8 @@ import displayNotification from "./ToastNotification"
 import rubber_duck from "../Assets/rubber_duck.mp3";
 import party_horn from "../Assets/party_horn.mp3";
 import snackbarResponse from "../Assets/snackbarResponse";
+import {faExchangeAlt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import useSound from 'use-sound';
 import {random} from "lodash";
@@ -73,8 +75,12 @@ function PointCard(props) {
                       onClick={active ? toggle : null}>
                 {props.points}
             </CardText>
-            <Modal isOpen={showModal} toggle={toggle} centered>
-                <ModalHeader>{props.category}</ModalHeader>
+            <Modal isOpen={showModal} toggle={toggle} keyboard={false} backdrop='static' centered>
+                <ModalHeader>
+                    {props.category}
+                    {' '}{' '}{' '}
+                    {props.gameState.stealActive && <FontAwesomeIcon icon={faExchangeAlt} color='green'/>}
+                </ModalHeader>
                 <ModalBody>
                     <p style={{fontSize: 'large'}}>{props.hint}</p>
                     <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>

@@ -18,7 +18,6 @@ import {
     updateFXVolume, updateMusicNext, updateMusicPrevious,
     updateMusicVolume, updatePlayMusic,
 } from "../Redux/ActionCreators/UpdateSettings";
-import "./Slide.css"
 
 
 const muiTheme = createMuiTheme({
@@ -81,7 +80,8 @@ function Settings(props) {
                             icon={faForward}
                             onClick={props.updateMusicNext}
                             color='white'
-                            className='fa-lg'/>
+                            className='fa-lg'
+                        />
                     </Col>
                 </Row>
                 <Row className="px-4">
