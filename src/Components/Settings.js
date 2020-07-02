@@ -15,8 +15,8 @@ import "react-awesome-button/dist/styles.css";
 import '../Assets/AwesomeButton.css'
 import {connect} from "react-redux";
 import {
-    updateFXSoundSettings,
-    updateMusicSoundSettings,
+    updateFXVolume, updateMusicNext, updateMusicPrevious,
+    updateMusicVolume, updatePlayMusic,
 } from "../Redux/ActionCreators/UpdateSettings";
 import "./Slide.css"
 
@@ -48,21 +48,40 @@ function Settings(props) {
                 </AwesomeButton>
             </Row>
             {!disabled && <>
-                <Row className='px-4 pt-4 pb-2'>
-                    <p style={{overflow:'hidden', fontSize: 'large', fontFamily: 'Inconsolata', color:'white',
-                        whiteSpace: 'nowrap', textOverflow: 'ellipsis'}} className='text-center'>
-                        This is a long piece of text boi man
+                <Row className='px-4 pt-4 pb-2 justify-content-center'>
+                    <p style={{
+                        overflow: 'hidden', fontSize: 'large', fontFamily: 'Inconsolata', color: 'white',
+                        whiteSpace: 'nowrap', textOverflow: 'ellipsis'
+                    }} className='text-center'>
+                        {props.settings.music.name}
                     </p>
                 </Row>
                 <Row className="px-4 pb-4 text-center">
                     <Col>
-                        <FontAwesomeIcon icon={faBackward} color='white' className='fa-lg'/>
+                        <FontAwesomeIcon
+                            style={{cursor: 'pointer'}}
+                            icon={faBackward}
+                            onClick={props.updateMusicPrevious}
+                            color='white'
+                            className='fa-lg'
+                        />
                     </Col>
                     <Col>
-                        <FontAwesomeIcon icon={faPlay} color='white' className='fa-lg'/>
+                        <FontAwesomeIcon
+                            style={{cursor: 'pointer'}}
+                            icon={props.settings.music.playing ? faPause : faPlay}
+                            onClick={props.updatePlayMusic}
+                            color='white'
+                            className='fa-lg'
+                        />
                     </Col>
                     <Col>
-                        <FontAwesomeIcon icon={faForward} color='white' className='fa-lg'/>
+                        <FontAwesomeIcon
+                            style={{cursor: 'pointer'}}
+                            icon={faForward}
+                            onClick={props.updateMusicNext}
+                            color='white'
+                            className='fa-lg'/>
                     </Col>
                 </Row>
                 <Row className="px-4">
@@ -75,7 +94,7 @@ function Settings(props) {
                         </Grid>
                         <Grid item xs>
                             <ThemeProvider theme={muiTheme}>
-                                <Slider value={props.settings.musicVolume}
+                                <Slider value={props.settings.music.volume}
                                         onChange={(_, v) => props.updateMusicVolume(v)}
                                         aria-labelledby="continuous-slider"/>
                             </ThemeProvider>
@@ -95,7 +114,7 @@ function Settings(props) {
                         </Grid>
                         <Grid item xs>
                             <ThemeProvider theme={muiTheme}>
-                                <Slider value={props.settings.fxVolume}
+                                <Slider value={props.settings.fx.volume}
                                         onChange={(_, v) => props.updateFXVolume(v)}
                                         aria-labelledby="continuous-slider"
                                 />
@@ -116,8 +135,11 @@ const mapStateToProps = ({settings}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateMusicVolume: musicVolume => dispatch(updateMusicSoundSettings(musicVolume)),
-    updateFXVolume: fxVolume => dispatch(updateFXSoundSettings(fxVolume)),
+    updateMusicVolume: volume => dispatch(updateMusicVolume(volume)),
+    updateFXVolume: volume => dispatch(updateFXVolume(volume)),
+    updatePlayMusic: () => dispatch(updatePlayMusic()),
+    updateMusicNext: () => dispatch(updateMusicNext()),
+    updateMusicPrevious: () => dispatch(updateMusicPrevious())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

@@ -21,8 +21,8 @@ function PointCard(props) {
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
 
-    const [playCorrectSong] = useSound(rubber_duck, {volume: props.settings.fxVolume / 100});
-    const [playIncorrectSong] = useSound(party_horn, {volume: props.settings.fxVolume / 100})
+    const [playCorrectSong] = useSound(rubber_duck, {volume: props.settings.fx.volume / 100});
+    const [playIncorrectSong] = useSound(party_horn, {volume: props.settings.fx.volume / 100})
 
     const randomResponse = arr => arr[random(0, arr.length - 1)];
 

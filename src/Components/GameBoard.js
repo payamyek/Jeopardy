@@ -5,7 +5,6 @@ import {Row} from "reactstrap"
 import {connect} from "react-redux";
 import GameOver from "./GameOver";
 import Sidebar from "./Sidebar"
-import wiimusic from "../Assets/wiimusic.mp3";
 import Sound from "react-sound";
 
 
@@ -21,8 +20,11 @@ function GameBoard(props) {
                     <Sidebar teams={props.teams}/>
                 </>
             }
-            <Sound url={wiimusic} autoLoad={true} loop={true} volume={props.settings.musicVolume}
-                   playStatus={Sound.status.PLAYING}/>
+            <Sound url={props.settings.music.track}
+                   volume={props.settings.music.volume}
+                   playStatus={props.settings.music.playing ? Sound.status.PLAYING : Sound.status.PAUSED}
+                   autoLoad
+            />
         </Row>
     )
 }
