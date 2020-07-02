@@ -1,5 +1,5 @@
 import React from "react"
-import {Row, Col} from "reactstrap";
+import {Row} from "reactstrap";
 import {connect} from "react-redux";
 
 
@@ -16,14 +16,14 @@ function Leaderboard({teams, gameState}) {
     const {teamAMove, teamAPoints, teamBPoints} = gameState
 
     return (
-        <Col>
-            <Row className="justify-content-center pt-5" fullheight>
+        <div className='align-self-center'>
+            <Row className="justify-content-center pt-5">
                 <h1 style={teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[0]} {teamAPoints}</h1>
             </Row>
-            <Row className="justify-content-center" fullheight>
+            <Row className="justify-content-center">
                 <h1 style={!teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[1]} {teamBPoints}</h1>
             </Row>
-        </Col>
+        </div>
     )
 }
 

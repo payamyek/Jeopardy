@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSlidersH} from '@fortawesome/free-solid-svg-icons';
-import {Row} from 'reactstrap'
+import {faSlidersH, faBackward, faForward, faPlay, faPause} from '@fortawesome/free-solid-svg-icons';
+import {Row, Col} from 'reactstrap'
 import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import {AwesomeButton} from "react-awesome-button";
@@ -18,8 +18,7 @@ import {
     updateFXSoundSettings,
     updateMusicSoundSettings,
 } from "../Redux/ActionCreators/UpdateSettings";
-import useSound from "use-sound";
-import rubber_duck from "../Assets/rubber_duck.mp3";
+import "./Slide.css"
 
 
 const muiTheme = createMuiTheme({
@@ -49,7 +48,24 @@ function Settings(props) {
                 </AwesomeButton>
             </Row>
             {!disabled && <>
-                <Row className="p-4">
+                <Row className='px-4 pt-4 pb-2'>
+                    <p style={{overflow:'hidden', fontSize: 'large', fontFamily: 'Inconsolata', color:'white',
+                        whiteSpace: 'nowrap', textOverflow: 'ellipsis'}} className='text-center'>
+                        This is a long piece of text boi man
+                    </p>
+                </Row>
+                <Row className="px-4 pb-4 text-center">
+                    <Col>
+                        <FontAwesomeIcon icon={faBackward} color='white' className='fa-lg'/>
+                    </Col>
+                    <Col>
+                        <FontAwesomeIcon icon={faPlay} color='white' className='fa-lg'/>
+                    </Col>
+                    <Col>
+                        <FontAwesomeIcon icon={faForward} color='white' className='fa-lg'/>
+                    </Col>
+                </Row>
+                <Row className="px-4">
                     <p style={{color: 'white', fontFamily: 'Inconsolata', fontWeight: 'bolder'}}>
                         Music Volume
                     </p>

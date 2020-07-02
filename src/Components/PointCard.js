@@ -67,25 +67,23 @@ function PointCard(props) {
     }
 
     return (
-        <>
-            <Card className="my-2" style={cardBodyStyle}>
-                <CardText className='text-center py-5' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
-                          style={cardTextStyle}
-                          onClick={active ? toggle : null}>
-                    {props.points}
-                </CardText>
-                <Modal isOpen={showModal} toggle={toggle} centered>
-                    <ModalHeader>{props.category}</ModalHeader>
-                    <ModalBody>
-                        <p style={{fontSize: 'large'}}>{props.hint}</p>
-                        <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={handleSubmit}>Submit</Button>
-                    </ModalFooter>
-                </Modal>
-            </Card>
-        </>
+        <Card className="my-2" style={cardBodyStyle}>
+            <CardText className='text-center py-5' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
+                      style={cardTextStyle}
+                      onClick={active ? toggle : null}>
+                {props.points}
+            </CardText>
+            <Modal isOpen={showModal} toggle={toggle} centered>
+                <ModalHeader>{props.category}</ModalHeader>
+                <ModalBody>
+                    <p style={{fontSize: 'large'}}>{props.hint}</p>
+                    <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={handleSubmit}>Submit</Button>
+                </ModalFooter>
+            </Modal>
+        </Card>
     );
 }
 
