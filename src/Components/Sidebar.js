@@ -8,6 +8,7 @@ function Sidebar(props) {
     return (
         <Col>
             <Settings/>
+            <Leaderboard teams={props.teams}/>
         </Col>
     )
 }

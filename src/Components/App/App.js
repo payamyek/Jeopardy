@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import store from "../../Redux/store";
 import {Container} from "reactstrap";
 
-function App({settings}) {
+function App() {
     return (
         <Provider store={store}>
             <Container fluid>
