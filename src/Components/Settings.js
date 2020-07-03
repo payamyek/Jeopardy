@@ -12,7 +12,7 @@ import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
 import "react-awesome-button/dist/styles.css";
-import '../Assets/AwesomeButton.css'
+import '../Styles/AwesomeButton.css'
 import {connect} from "react-redux";
 import {
     updateFXVolume, updateMusicNext, updateMusicPrevious,

@@ -5,7 +5,7 @@ import displayNotification from "./ToastNotification"
 
 import rubber_duck from "../Assets/rubber_duck.mp3";
 import party_horn from "../Assets/party_horn.mp3";
-import snackbarResponse from "../Assets/snackbarResponse";
+import snackbarResponse from "../Constants/snackbarResponse";
 import {faExchangeAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

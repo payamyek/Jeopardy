@@ -1,13 +1,5 @@
-import headHighSwell from "../../Assets/Head_High_Swells.mp3";
-import satisfactionGuaranteed from "../../Assets/Satisfaction_Guaranteed.mp3";
-import luxery from "../../Assets/Luxery.mp3"
+import tracks from "../../Constants/tracks"
 
-
-const tracks = [
-    {track: headHighSwell, name: "Head High Swells (Rock)"},
-    {track: satisfactionGuaranteed, name: "Satisfaction Guaranteed (Reggae)"},
-    {track: luxery, name: "Luxery (Hip Hop)"},
-]
 
 const defaultState = {
     music: {volume: 80, track: tracks[0].track, name: tracks[0].name, index: 0, playing: true},

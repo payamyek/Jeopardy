@@ -1,6 +1,6 @@
 import React from "react"
 import CategoryColumn from "./CategoryColumn";
-import data from "../Assets/sampleGameData";
+import data from "../Constants/sampleGameData";
 import {Row} from "reactstrap"
 import {connect} from "react-redux";
 import GameOver from "./GameOver";
