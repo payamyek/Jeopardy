@@ -14,6 +14,7 @@ import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
 import {killCard, updatePoints, updateTeamAMove} from "../Redux/ActionCreators/updateGameState";
 import {connect} from "react-redux";
+import '../Styles/PointCard.css'
 
 
 function PointCard(props) {
@@ -53,47 +54,11 @@ function PointCard(props) {
         }
     };
 
-    const onMouseOver = e => active && (e.target.style.background = '#41e3da')
-
-    const onMouseOut = e => active && (e.target.style.background = 'lightseagreen')
-
-    const cardBodyStyle = {
-        backgroundColor: active ? 'lightseagreen' : 'black',
-        cursor: active ? 'pointer' : 'default',
-        borderRadius: '2%'
-    }
-
-    const cardTextStyle = {
-        backgroundColor: active ? 'lightseagreen' : 'black',
-        color: 'white',
-        borderRadius: '2%',
-        fontSize: '2.2vw',
-        fontFamily: 'Inconsolata',
-        textDecoration: active ? 'none' : 'line-through'
-    }
-
-    const cardBodyKilledStyle = {
-        backgroundColor: 'black',
-        cursor: active ? 'pointer' : 'default',
-        borderRadius: '2%'
-    }
-
-    const cardTextKilledStyle = {
-        backgroundColor: 'black',
-        color: 'white',
-        borderRadius: '2%',
-        fontSize: '2.2vw',
-        fontFamily: 'Inconsolata',
-        textDecoration: active ? 'none' : 'line-through'
-    }
-
     return (
-        <Card className="my-2 glowing-div" style={killed ? cardBodyKilledStyle : cardBodyStyle}>
-            <CardText className='text-center py-5'
-                      onMouseOver={onMouseOver}
-                      onMouseOut={onMouseOut}
-                      style={killed ? cardTextKilledStyle : cardTextStyle}
-                      onClick={active ? toggle : null}
+        <Card className={`my-2 ${active ? 'card-body-style-active' : 'card-body-style-inactive'}`}>
+            <CardText
+                className={`text-center py-5 ${active ? 'card-text-style-active' : 'card-text-style-inactive'}`}
+                onClick={active ? toggle : null}
             >
                 {killed ? <FontAwesomeIcon icon={faSkullCrossbones} className='fa-lg'/> : props.points}
             </CardText>
@@ -104,15 +69,20 @@ function PointCard(props) {
                     {props.gameState.stealActive && <FontAwesomeIcon icon={faExchangeAlt} color='green'/>}
                 </ModalHeader>
                 <ModalBody>
-                    <p style={{fontSize: '1.3vw'}}>{props.hint}</p>
-                    <Input type="text"
-                           placeholder="Question"
-                           style={{fontSize: '1vw'}}
-                           onChange={e => setAnswer(`${e.target.value}`)}
+                    <p className='modal-body-element'>
+                        {props.hint}
+                    </p>
+                    <Input
+                        className='modal-body-element'
+                        type="text"
+                        placeholder="Question"
+                        onChange={e => setAnswer(`${e.target.value}`)}
                     />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={handleSubmit} style={{fontSize: '0.8vw'}}>Submit</Button>
+                    <Button className='modal-footer-element' color="primary" onClick={handleSubmit}>
+                        Submit
+                    </Button>
                 </ModalFooter>
             </Modal>
         </Card>
