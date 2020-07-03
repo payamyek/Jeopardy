@@ -1,37 +1,45 @@
 import React from "react"
 import CategoryColumn from "./CategoryColumn";
-import Leaderboard from "./Leaderboard";
-import data from "../Assets/sampleGameData";
+import data from "../Constants/sampleGameData";
 import {Row} from "reactstrap"
 import {connect} from "react-redux";
 import GameOver from "./GameOver";
+import Sidebar from "./Sidebar"
+import Sound from "react-sound";
+import {updateMusicNext} from "../Redux/ActionCreators/UpdateSettings";
 
 
 function GameBoard(props) {
-    let generateGameBoard = () => {
-        let columns = Object.keys(data)
-        let result = []
-        for (let i = 0; i < 5; i++) {
-            result[i] = <CategoryColumn categoryIndex={i} category={columns[i]} data={data[columns[i]]}/>
-        }
-        return result
-    }
-
     return (
-        <Row>
+        <Row className='pt-2'>
             {props.gameState.winner ? <GameOver/> :
                 <>
-                    {generateGameBoard()}
-                    <Leaderboard teams={props.teams}/>
+                    {
+                        Object.keys(data).map((key, i) =>
+                            <CategoryColumn categoryIndex={i} category={key} data={data[key]}/>)
+                    }
+                    <Sidebar teams={props.teams}/>
                 </>
             }
+            <Sound url={props.settings.music.track}
+                   onFinishedPlaying={() => props.updateMusicNext()}
+                   volume={props.settings.music.volume}
+                   playStatus={props.settings.music.playing ? Sound.status.PLAYING : Sound.status.PAUSED}
+                   autoLoad
+            />
         </Row>
     )
 }
 
-const mapStateToProps = ({gameState}) => ({
-    gameState
+const mapStateToProps = ({gameState, settings}) => ({
+    gameState,
+    settings
 });
 
 
-export default connect(mapStateToProps)(GameBoard);
+const mapDispatchToProps = dispatch => ({
+    updateMusicNext: () => dispatch(updateMusicNext())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameBoard);

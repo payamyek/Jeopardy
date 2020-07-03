@@ -5,14 +5,14 @@ import displayNotification from "./ToastNotification"
 
 import rubber_duck from "../Assets/rubber_duck.mp3";
 import party_horn from "../Assets/party_horn.mp3";
-import snackbarResponse from "../Assets/snackbarResponse";
+import snackbarResponse from "../Constants/snackbarResponse";
+import {faExchangeAlt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import useSound from 'use-sound';
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
-
 import {updatePoints, updateTeamAMove} from "../Redux/ActionCreators/UpdateGameState";
-
 import {connect} from "react-redux";
 
 
@@ -23,8 +23,8 @@ function PointCard(props) {
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
 
-    const [playCorrectSong] = useSound(rubber_duck);
-    const [playIncorrectSong] = useSound(party_horn)
+    const [playCorrectSong] = useSound(rubber_duck, {volume: props.settings.fx.volume / 100});
+    const [playIncorrectSong] = useSound(party_horn, {volume: props.settings.fx.volume / 100})
 
     const randomResponse = arr => arr[random(0, arr.length - 1)];
 
@@ -48,19 +48,16 @@ function PointCard(props) {
     };
 
     const onMouseOver = e => {
-        if (active) {
-            e.target.style.background = '#41e3da'
-        }
+        active && (e.target.style.background = '#41e3da')
     }
 
     const onMouseOut = e => {
-        if (active) {
-            e.target.style.background = 'lightseagreen'
-        }
+        active && (e.target.style.background = 'lightseagreen')
     }
 
     let cardBodyStyle = {
-        backgroundColor: active ? 'lightseagreen' : 'black'
+        backgroundColor: active ? 'lightseagreen' : 'black',
+        cursor: 'pointer'
     }
 
     let cardTextStyle = {
@@ -73,30 +70,33 @@ function PointCard(props) {
     }
 
     return (
-        <>
-            <Card className="my-2" style={cardBodyStyle}>
-                <CardText className='text-center py-5' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
-                          style={cardTextStyle}
-                          onClick={active ? toggle : null}>
-                    {props.points}
-                </CardText>
-                <Modal isOpen={showModal} toggle={toggle} centered>
-                    <ModalHeader>{props.category}</ModalHeader>
-                    <ModalBody>
-                        <p style={{fontSize: 'large'}}>{props.hint}</p>
-                        <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={handleSubmit}>Submit</Button>
-                    </ModalFooter>
-                </Modal>
-            </Card>
-        </>
+        <Card className="my-2" style={cardBodyStyle}>
+            <CardText className='text-center py-5' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
+                      style={cardTextStyle}
+                      onClick={active ? toggle : null}>
+                {props.points}
+            </CardText>
+            <Modal isOpen={showModal} toggle={toggle} keyboard={false} backdrop='static' centered>
+                <ModalHeader>
+                    {props.category}
+                    {' '}{' '}{' '}
+                    {props.gameState.stealActive && <FontAwesomeIcon icon={faExchangeAlt} color='green'/>}
+                </ModalHeader>
+                <ModalBody>
+                    <p style={{fontSize: 'large'}}>{props.hint}</p>
+                    <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={handleSubmit}>Submit</Button>
+                </ModalFooter>
+            </Modal>
+        </Card>
     );
 }
 
-const mapStateToProps = ({gameState}) => ({
-    gameState
+const mapStateToProps = ({gameState, settings}) => ({
+    gameState,
+    settings
 });
 
 const mapDispatchToProps = dispatch => ({
