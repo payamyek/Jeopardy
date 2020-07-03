@@ -53,21 +53,22 @@ function PointCard(props) {
 
     const cardBodyStyle = {
         backgroundColor: active ? 'lightseagreen' : 'black',
-        cursor: active ? 'pointer' : 'default'
+        cursor: active ? 'pointer' : 'default',
+        borderRadius: '2%'
     }
 
     const cardTextStyle = {
         backgroundColor: active ? 'lightseagreen' : 'black',
         color: 'white',
         borderRadius: '2%',
-        fontSize: 'xx-large',
+        fontSize: '2.2vw',
         fontFamily: 'Inconsolata',
         textDecoration: active ? 'none' : 'line-through'
     }
 
     return (
-        <Card className="my-2" style={cardBodyStyle}>
-            <CardText className='text-center py-5' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
+        <Card className="my-2 glowing-div" style={cardBodyStyle} >
+            <CardText className='text-center py-5 animate__shakeX' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
                       style={cardTextStyle}
                       onClick={active ? toggle : null}>
                 {props.points}
@@ -79,11 +80,15 @@ function PointCard(props) {
                     {props.gameState.stealActive && <FontAwesomeIcon icon={faExchangeAlt} color='green'/>}
                 </ModalHeader>
                 <ModalBody>
-                    <p style={{fontSize: 'large'}}>{props.hint}</p>
-                    <Input type="text" placeholder="Question" onChange={e => setAnswer(`${e.target.value}`)}/>
+                    <p style={{fontSize: '1.3vw'}}>{props.hint}</p>
+                    <Input type="text"
+                           placeholder="Question"
+                           style={{fontSize: '1vw'}}
+                           onChange={e => setAnswer(`${e.target.value}`)}
+                    />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={handleSubmit}>Submit</Button>
+                    <Button color="primary" onClick={handleSubmit} style={{fontSize: '0.8vw'}}>Submit</Button>
                 </ModalFooter>
             </Modal>
         </Card>

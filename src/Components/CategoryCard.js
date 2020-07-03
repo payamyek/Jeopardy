@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {isCategoryCompleted} from "../Services/handleGameState";
 
 
-let CategoryCard = ({category, categoryIndex, gameState}) => {
+function CategoryCard({category, categoryIndex, gameState}) {
 
     const categoryCompleted = isCategoryCompleted(categoryIndex, gameState.data)
 
@@ -14,16 +14,19 @@ let CategoryCard = ({category, categoryIndex, gameState}) => {
 
     const cardTextStyle = {
         backgroundColor: categoryCompleted ? 'black' : '#078a83',
-        textDecoration: categoryCompleted ? 'line-through': 'none',
+        textDecoration: categoryCompleted ? 'line-through' : 'none',
         fontWeight: 'bold',
         color: 'white',
-        fontSize: 'xx-large',
-        fontFamily: 'Inconsolata'
+        fontSize: '2vw',
+        fontFamily: 'Inconsolata',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap'
     }
 
     return (
         <Card style={cardStyle}>
-            <CardText style={cardTextStyle} className='category-card-body text-center py-3'>
+            <CardText style={cardTextStyle} className='category-card-body text-center py-3 px-2'>
                 {category}
             </CardText>
         </Card>

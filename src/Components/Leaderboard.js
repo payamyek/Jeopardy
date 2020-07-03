@@ -4,11 +4,11 @@ import {connect} from "react-redux";
 
 
 const h1StyleDefault = {
-    fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'white', fontSize: 'xx-large'
+    fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'white', fontSize: '2vw'
 };
 
 const h1StyleTurn = {
-    fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'chartreuse', fontSize: 'xx-large'
+    fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'chartreuse', fontSize: '2vw'
 };
 
 function Leaderboard({teams, gameState}) {
