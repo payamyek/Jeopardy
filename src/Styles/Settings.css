@@ -1,0 +1,7 @@
+.marquee-text-style {
+    font-size: large;
+    font-family: Inconsolata, serif;
+    color: white;
+    white-space: nowrap;
+    font-weight: bold;
+}

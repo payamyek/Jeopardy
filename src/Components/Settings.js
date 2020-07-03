@@ -20,6 +20,7 @@ import {
 } from "../Redux/ActionCreators/updateSettings";
 
 import Marquee from "react-smooth-marquee"
+import "../Styles/Settings.css"
 
 
 const muiTheme = createMuiTheme({
@@ -39,14 +40,6 @@ const muiTheme = createMuiTheme({
 });
 
 
-const marqueeTextStyle = {
-    fontSize: 'large',
-    fontFamily: 'Inconsolata',
-    color: 'white',
-    whiteSpace: 'nowrap',
-    fontWeight: 'bold'
-}
-
 function Settings(props) {
     const [disabled, setDisabled] = useState(true)
 
@@ -60,7 +53,7 @@ function Settings(props) {
             {!disabled && <>
                 <Row className='mx-3 pt-4 pb-1 justify-content-center' style={{overflowX: 'hidden'}}>
                     <Marquee velocity={0.08}>
-                        <p style={marqueeTextStyle}>
+                        <p className='marquee-text-style'>
                             {props.settings.music.name}
                         </p>
                     </Marquee>

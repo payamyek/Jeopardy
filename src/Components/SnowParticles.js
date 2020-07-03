@@ -2,14 +2,6 @@ import React from "react";
 import Particles from "react-particles-js";
 
 
-const style = {
-    position: 'fixed',
-    right: '0',
-    bottom: '0',
-    left: '0',
-    zIndex: '-1'
-}
-
 const params = {
     "particles": {
         "number": {
@@ -64,7 +56,7 @@ const params = {
 
 function SnowParticles() {
     return (
-        <Particles style={style} params={params}/>
+        <Particles className='particles-style' params={params}/>
     )
 }
 
