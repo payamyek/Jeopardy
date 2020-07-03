@@ -44,6 +44,12 @@ const incorrect = state => {
     return newState
 }
 
+const kill = (state, action) => {
+    const newState = {...state}
+    const [i, j] = getCoordinates(action.payload.category, action.payload.points)
+    newState.data[i][j] = false
+    return newState
+}
 
 export default function gameState(state = defaultState, action) {
     switch (action.type) {
@@ -51,6 +57,8 @@ export default function gameState(state = defaultState, action) {
             return correct(state, action)
         case "INCORRECT":
             return incorrect(state)
+        case "KILL":
+            return kill(state, action)
         default:
             return state
     }

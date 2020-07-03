@@ -6,13 +6,13 @@ import displayNotification from "./ToastNotification"
 import rubber_duck from "../Assets/rubber_duck.mp3";
 import party_horn from "../Assets/party_horn.mp3";
 import snackbarResponse from "../Constants/snackbarResponse";
-import {faExchangeAlt} from "@fortawesome/free-solid-svg-icons";
+import {faExchangeAlt, faSkullCrossbones} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import useSound from 'use-sound';
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
-import {updatePoints, updateTeamAMove} from "../Redux/ActionCreators/updateGameState";
+import {killCard, updatePoints, updateTeamAMove} from "../Redux/ActionCreators/updateGameState";
 import {connect} from "react-redux";
 
 
@@ -22,6 +22,7 @@ function PointCard(props) {
 
     const [answer, setAnswer] = useState('')
     const [active, setActive] = useState(true)
+    const [killed, setKilled] = useState(false)
 
     const [playCorrectSong] = useSound(rubber_duck, {volume: props.settings.fx.volume / 100});
     const [playIncorrectSong] = useSound(party_horn, {volume: props.settings.fx.volume / 100})
@@ -40,9 +41,14 @@ function PointCard(props) {
         } else {
             if (props.gameState.stealActive === true) {
                 setShowModal(!showModal)
+                setActive(false)
+                setKilled(true)
+                props.killCard(props.categoryIndex, props.points)
+                displayNotification(props.question, false);
+            } else {
+                displayNotification(randomResponse(snackbarResponse["incorrect"]), false);
             }
             props.updateTurn()
-            displayNotification(randomResponse(snackbarResponse["incorrect"]), false);
             playIncorrectSong()
         }
     };
@@ -66,12 +72,30 @@ function PointCard(props) {
         textDecoration: active ? 'none' : 'line-through'
     }
 
+    const cardBodyKilledStyle = {
+        backgroundColor: 'black',
+        cursor: active ? 'pointer' : 'default',
+        borderRadius: '2%'
+    }
+
+    const cardTextKilledStyle = {
+        backgroundColor: 'black',
+        color: 'white',
+        borderRadius: '2%',
+        fontSize: '2.2vw',
+        fontFamily: 'Inconsolata',
+        textDecoration: active ? 'none' : 'line-through'
+    }
+
     return (
-        <Card className="my-2 glowing-div" style={cardBodyStyle} >
-            <CardText className='text-center py-5 animate__shakeX' onMouseOver={onMouseOver} onMouseOut={onMouseOut}
-                      style={cardTextStyle}
-                      onClick={active ? toggle : null}>
-                {props.points}
+        <Card className="my-2 glowing-div" style={killed ? cardBodyKilledStyle : cardBodyStyle}>
+            <CardText className='text-center py-5'
+                      onMouseOver={onMouseOver}
+                      onMouseOut={onMouseOut}
+                      style={killed ? cardTextKilledStyle : cardTextStyle}
+                      onClick={active ? toggle : null}
+            >
+                {killed ? <FontAwesomeIcon icon={faSkullCrossbones} className='fa-lg'/> : props.points}
             </CardText>
             <Modal isOpen={showModal} toggle={toggle} keyboard={false} backdrop='static' centered>
                 <ModalHeader>
@@ -102,7 +126,8 @@ const mapStateToProps = ({gameState, settings}) => ({
 
 const mapDispatchToProps = dispatch => ({
     updatePoints: (category, points) => dispatch(updatePoints(category, points)),
-    updateTurn: () => dispatch(updateTeamAMove())
+    updateTurn: () => dispatch(updateTeamAMove()),
+    killCard: (category, points) => dispatch(killCard(category, points))
 });
 
 export default connect(
