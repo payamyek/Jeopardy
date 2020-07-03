@@ -8,8 +8,12 @@ function Body({message, icon}) {
     return (
         <table>
             <tr>
-                <td><Icon path={icon} size={0.9}/></td>
-                <td>{message}</td>
+                <td>
+                    <Icon path={icon} size={0.9}/>
+                </td>
+                <td>
+                    {message}
+                </td>
             </tr>
         </table>
     )

@@ -11,23 +11,25 @@ import {updateMusicNext} from "../Redux/ActionCreators/updateSettings";
 
 function GameBoard(props) {
     return (
-        <Row className='pt-2'>
-            {props.gameState.winner ? <GameOver/> :
-                <>
-                    {
-                        Object.keys(data).map((key, i) =>
-                            <CategoryColumn categoryIndex={i} category={key} data={data[key]}/>)
-                    }
-                    <Sidebar teams={props.teams}/>
-                </>
-            }
-            <Sound url={props.settings.music.track}
-                   onFinishedPlaying={() => props.updateMusicNext()}
-                   volume={props.settings.music.volume}
-                   playStatus={props.settings.music.playing ? Sound.status.PLAYING : Sound.status.PAUSED}
-                   autoLoad
-            />
-        </Row>
+        <>
+            <Row className='pt-2'>
+                {props.gameState.winner ? <GameOver/> :
+                    <>
+                        {
+                            Object.keys(data).map((key, i) =>
+                                <CategoryColumn categoryIndex={i} category={key} data={data[key]}/>)
+                        }
+                        <Sidebar teams={props.teams}/>
+                    </>
+                }
+                <Sound url={props.settings.music.track}
+                       onFinishedPlaying={() => props.updateMusicNext()}
+                       volume={props.settings.music.volume}
+                       playStatus={props.settings.music.playing ? Sound.status.PLAYING : Sound.status.PAUSED}
+                       autoLoad
+                />
+            </Row>
+        </>
     )
 }
 

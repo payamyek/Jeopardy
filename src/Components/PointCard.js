@@ -47,20 +47,16 @@ function PointCard(props) {
         }
     };
 
-    const onMouseOver = e => {
-        active && (e.target.style.background = '#41e3da')
-    }
+    const onMouseOver = e => active && (e.target.style.background = '#41e3da')
 
-    const onMouseOut = e => {
-        active && (e.target.style.background = 'lightseagreen')
-    }
+    const onMouseOut = e => active && (e.target.style.background = 'lightseagreen')
 
-    let cardBodyStyle = {
+    const cardBodyStyle = {
         backgroundColor: active ? 'lightseagreen' : 'black',
         cursor: active ? 'pointer' : 'default'
     }
 
-    let cardTextStyle = {
+    const cardTextStyle = {
         backgroundColor: active ? 'lightseagreen' : 'black',
         color: 'white',
         borderRadius: '2%',
