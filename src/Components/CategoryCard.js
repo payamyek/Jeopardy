@@ -2,31 +2,17 @@ import React from "react";
 import {Card, CardText} from "reactstrap";
 import {connect} from "react-redux";
 import {isCategoryCompleted} from "../Services/handleGameState";
+import "../Styles/CategoryCard.css"
 
 
 function CategoryCard({category, categoryIndex, gameState}) {
 
-    const categoryCompleted = isCategoryCompleted(categoryIndex, gameState.data)
-
-    const cardStyle = {
-        backgroundColor: categoryCompleted ? 'black' : '#078a83'
-    }
-
-    const cardTextStyle = {
-        backgroundColor: categoryCompleted ? 'black' : '#078a83',
-        textDecoration: categoryCompleted ? 'line-through' : 'none',
-        fontWeight: 'bold',
-        color: 'white',
-        fontSize: '2vw',
-        fontFamily: 'Inconsolata',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap'
-    }
+    const completed = isCategoryCompleted(categoryIndex, gameState.data)
 
     return (
-        <Card style={cardStyle}>
-            <CardText style={cardTextStyle} className='category-card-body text-center py-3 px-2'>
+        <Card className={completed ? 'card-style-completed' : 'card-style'}>
+            <CardText
+                className={`text-center py-3 px-2 ${completed ? 'card-text-style-completed' : 'card-text-style'}`}>
                 {category}
             </CardText>
         </Card>

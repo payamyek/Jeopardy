@@ -1,0 +1,30 @@
+.card-style {
+    background-color: #078a83 !important;
+}
+
+.card-style-completed {
+    background-color: black !important;
+}
+
+.card-text-style {
+    background-color: #078a83 !important;
+    font-Weight: bold;
+    color: white;
+    font-size: 2vw;
+    font-family: Inconsolata, serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-text-style-completed {
+    background-color: black !important;
+    text-decoration: line-through;
+    font-Weight: bold;
+    color: white;
+    font-size: 2vw;
+    font-family: Inconsolata, serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
