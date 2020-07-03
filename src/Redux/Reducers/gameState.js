@@ -1,3 +1,5 @@
+import {determineWinner, getCoordinates} from "../../Services/handleGameState";
+
 const startingGameState = [
     [true, true, true, true, true],
     [true, true, true, true, true],
@@ -14,35 +16,6 @@ const defaultState = {
     teamAPoints: 0,
     teamBPoints: 0,
     winner: 0
-}
-
-const getCoordinates = (category, points) => {
-    const allPoints = [100, 200, 300, 400, 500];
-    return [allPoints.indexOf(points), category]
-}
-
-const pointValue = i => (i + 1) * 100;
-
-const remainingPoints = (data) => {
-    let points = 0;
-    for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 5; j++) {
-            if (data[i][j]) {
-                points += pointValue(i)
-            }
-        }
-    }
-    return points;
-}
-
-const determineWinner = (teamAScore, teamBScore, data) => {
-    const pointsLeft = remainingPoints(data)
-    if (teamAScore - teamBScore > pointsLeft) {
-        return 1;
-    } else if (teamBScore - teamAScore > pointsLeft) {
-        return 2;
-    }
-    return 0;
 }
 
 const correct = (state, action) => {

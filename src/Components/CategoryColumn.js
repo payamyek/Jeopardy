@@ -7,7 +7,7 @@ import {Col} from "reactstrap"
 function CategoryColumn({category, data, categoryIndex}) {
     return (
         <Col>
-            <CategoryCard category={category}/>
+            <CategoryCard category={category} categoryIndex={categoryIndex}/>
             {data.map(entry =>
                 <PointCard
                     points={entry["Points"]}

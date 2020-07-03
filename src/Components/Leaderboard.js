@@ -17,10 +17,10 @@ function Leaderboard({teams, gameState}) {
 
     return (
         <div className='align-self-center'>
-            <Row className="justify-content-center pt-5">
+            <Row className="pl-4 pt-5">
                 <h1 style={teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[0]} {teamAPoints}</h1>
             </Row>
-            <Row className="justify-content-center">
+            <Row className="pl-4">
                 <h1 style={!teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[1]} {teamBPoints}</h1>
             </Row>
         </div>
