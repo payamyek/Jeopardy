@@ -17,7 +17,7 @@ import {connect} from "react-redux";
 import {
     updateFXVolume, updateMusicNext, updateMusicPrevious,
     updateMusicVolume, updatePlayMusic,
-} from "../Redux/ActionCreators/UpdateSettings";
+} from "../Redux/ActionCreators/updateSettings";
 
 import Marquee from "react-smooth-marquee"
 

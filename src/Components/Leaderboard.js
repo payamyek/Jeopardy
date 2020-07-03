@@ -12,7 +12,6 @@ const h1StyleTurn = {
 };
 
 function Leaderboard({teams, gameState}) {
-
     const {teamAMove, teamAPoints, teamBPoints} = gameState
 
     return (

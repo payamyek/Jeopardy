@@ -12,7 +12,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import useSound from 'use-sound';
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
-import {updatePoints, updateTeamAMove} from "../Redux/ActionCreators/UpdateGameState";
+import {updatePoints, updateTeamAMove} from "../Redux/ActionCreators/updateGameState";
 import {connect} from "react-redux";
 
 

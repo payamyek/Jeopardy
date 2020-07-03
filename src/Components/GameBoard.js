@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import GameOver from "./GameOver";
 import Sidebar from "./Sidebar"
 import Sound from "react-sound";
-import {updateMusicNext} from "../Redux/ActionCreators/UpdateSettings";
+import {updateMusicNext} from "../Redux/ActionCreators/updateSettings";
 
 
 function GameBoard(props) {
