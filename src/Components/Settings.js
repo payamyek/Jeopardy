@@ -38,6 +38,15 @@ const muiTheme = createMuiTheme({
     }
 });
 
+
+const marqueeTextStyle = {
+    fontSize: 'large',
+    fontFamily: 'Inconsolata',
+    color: 'white',
+    whiteSpace: 'nowrap',
+    fontWeight: 'bold'
+}
+
 function Settings(props) {
     const [disabled, setDisabled] = useState(true)
 
@@ -49,12 +58,9 @@ function Settings(props) {
                 </AwesomeButton>
             </Row>
             {!disabled && <>
-                <Row className='px-4 pt-4 pb-1 justify-content-center' style={{overflowX:'hidden'}}>
+                <Row className='mx-3 pt-4 pb-1 justify-content-center' style={{overflowX: 'hidden'}}>
                     <Marquee velocity={0.08}>
-                        <p style={{ fontSize: 'large', fontFamily: 'Inconsolata', color: 'white',
-                            whiteSpace: 'nowrap'
-                        }}
-                        >
+                        <p style={marqueeTextStyle}>
                             {props.settings.music.name}
                         </p>
                     </Marquee>

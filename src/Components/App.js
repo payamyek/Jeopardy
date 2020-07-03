@@ -1,7 +1,7 @@
 import React from "react"
-import GameBoard from '../GameBoard';
+import GameBoard from './GameBoard';
 import {Provider} from "react-redux";
-import store from "../../Redux/store";
+import store from "../Redux/store";
 import {Container} from "reactstrap";
 
 function App() {
