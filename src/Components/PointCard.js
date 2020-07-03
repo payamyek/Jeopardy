@@ -56,7 +56,8 @@ function PointCard(props) {
     }
 
     let cardBodyStyle = {
-        backgroundColor: active ? 'lightseagreen' : 'black'
+        backgroundColor: active ? 'lightseagreen' : 'black',
+        cursor: 'pointer'
     }
 
     let cardTextStyle = {
