@@ -1,0 +1,13 @@
+.h1-style-default {
+    font-weight: bolder;
+    font-family: Inconsolata, serif;
+    color: white;
+    font-size: 2vw;
+}
+
+.h1-style-turn{
+    font-weight: bolder;
+    font-family: Inconsolata, serif;
+    color: chartreuse;
+    font-size: 2vw;
+}

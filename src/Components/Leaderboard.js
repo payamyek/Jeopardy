@@ -1,15 +1,7 @@
 import React from "react"
 import {Row} from "reactstrap";
 import {connect} from "react-redux";
-
-
-const h1StyleDefault = {
-    fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'white', fontSize: '2vw'
-};
-
-const h1StyleTurn = {
-    fontWeight: 'bolder', fontFamily: 'Inconsolata', color: 'chartreuse', fontSize: '2vw'
-};
+import "../Styles/Leaderboard.css"
 
 function Leaderboard({teams, gameState}) {
     const {teamAMove, teamAPoints, teamBPoints} = gameState
@@ -17,10 +9,14 @@ function Leaderboard({teams, gameState}) {
     return (
         <div className='align-self-center'>
             <Row className="pl-4 pt-5">
-                <h1 style={teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[0]} {teamAPoints}</h1>
+                <h1 className={teamAMove ? 'h1-style-turn' : 'h1-style-default'}>
+                    {teams[0]} {teamAPoints}
+                </h1>
             </Row>
             <Row className="pl-4">
-                <h1 style={!teamAMove ? h1StyleTurn : h1StyleDefault}>{teams[1]} {teamBPoints}</h1>
+                <h1 className={!teamAMove ? 'h1-style-turn' : 'h1-style-default'}>
+                    {teams[1]} {teamBPoints}
+                </h1>
             </Row>
         </div>
     )

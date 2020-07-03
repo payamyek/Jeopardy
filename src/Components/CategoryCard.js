@@ -6,7 +6,6 @@ import "../Styles/CategoryCard.css"
 
 
 function CategoryCard({category, categoryIndex, gameState}) {
-
     const completed = isCategoryCompleted(categoryIndex, gameState.data)
 
     return (
