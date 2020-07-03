@@ -1,9 +1,9 @@
 import React from "react"
 import {Row} from "reactstrap";
 import {connect} from "react-redux";
-import "../Styles/Leaderboard.css"
+import "../Styles/ScoreBoard.css"
 
-function Leaderboard({teams, gameState}) {
+function ScoreBoard({teams, gameState}) {
     const {teamAMove, teamAPoints, teamBPoints} = gameState
 
     return (
@@ -26,4 +26,4 @@ const mapStateToProps = ({gameState}) => ({
     gameState
 });
 
-export default connect(mapStateToProps)(Leaderboard);
+export default connect(mapStateToProps)(ScoreBoard);

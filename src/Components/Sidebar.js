@@ -1,6 +1,6 @@
 import React from "react";
 import Settings from "./Settings";
-import Leaderboard from "./Leaderboard";
+import ScoreBoard from "./ScoreBoard";
 import {Col} from "react-bootstrap";
 
 
@@ -8,7 +8,7 @@ function Sidebar(props) {
     return (
         <Col>
             <Settings/>
-            <Leaderboard teams={props.teams}/>
+            <ScoreBoard teams={props.teams}/>
         </Col>
     )
 }
