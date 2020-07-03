@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import GameOver from "./GameOver";
 import Sidebar from "./Sidebar"
 import Sound from "react-sound";
+import {updateMusicNext} from "../Redux/ActionCreators/UpdateSettings";
 
 
 function GameBoard(props) {
@@ -21,6 +22,7 @@ function GameBoard(props) {
                 </>
             }
             <Sound url={props.settings.music.track}
+                   onFinishedPlaying={() => props.updateMusicNext()}
                    volume={props.settings.music.volume}
                    playStatus={props.settings.music.playing ? Sound.status.PLAYING : Sound.status.PAUSED}
                    autoLoad
@@ -35,4 +37,9 @@ const mapStateToProps = ({gameState, settings}) => ({
 });
 
 
-export default connect(mapStateToProps)(GameBoard);
+const mapDispatchToProps = dispatch => ({
+    updateMusicNext: () => dispatch(updateMusicNext())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameBoard);

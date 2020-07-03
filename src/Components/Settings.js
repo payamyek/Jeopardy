@@ -19,6 +19,8 @@ import {
     updateMusicVolume, updatePlayMusic,
 } from "../Redux/ActionCreators/UpdateSettings";
 
+import Marquee from "react-smooth-marquee"
+
 
 const muiTheme = createMuiTheme({
     overrides: {
@@ -47,13 +49,15 @@ function Settings(props) {
                 </AwesomeButton>
             </Row>
             {!disabled && <>
-                <Row className='px-4 pt-4 pb-2 justify-content-center'>
-                    <p style={{
-                        overflow: 'hidden', fontSize: 'large', fontFamily: 'Inconsolata', color: 'white',
-                        whiteSpace: 'nowrap', textOverflow: 'ellipsis'
-                    }} className='text-center'>
-                        {props.settings.music.name}
-                    </p>
+                <Row className='px-4 pt-4 pb-1 justify-content-center' style={{overflowX:'hidden'}}>
+                    <Marquee velocity={0.08}>
+                        <p style={{ fontSize: 'large', fontFamily: 'Inconsolata', color: 'white',
+                            whiteSpace: 'nowrap'
+                        }}
+                        >
+                            {props.settings.music.name}
+                        </p>
+                    </Marquee>
                 </Row>
                 <Row className="px-4 pb-4 text-center">
                     <Col>
