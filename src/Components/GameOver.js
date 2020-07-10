@@ -6,7 +6,7 @@ import celebration from "../Assets/celebration.gif"
 
 
 function GameOver(props) {
-    const style = {fontSize:'xxx-large', color:'white'}
+    const style = {fontSize: 'xxx-large', color: 'white'}
 
     return (
         <Container fluid className='py-5 text-center'>

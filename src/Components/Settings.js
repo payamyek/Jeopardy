@@ -11,8 +11,6 @@ import Slider from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
-import "react-awesome-button/dist/styles.css";
-import '../Styles/AwesomeButton.css'
 import {connect} from "react-redux";
 import {
     updateFXVolume, updateMusicNext, updateMusicPrevious,
@@ -20,6 +18,8 @@ import {
 } from "../Redux/ActionCreators/updateSettings";
 
 import Marquee from "react-smooth-marquee"
+
+import "react-awesome-button/dist/styles.css";
 import "../Styles/Settings.css"
 
 
