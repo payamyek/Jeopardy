@@ -73,7 +73,7 @@ const BasicTable = (props) => {
                                     <FontAwesomeIcon
                                         icon={faPlusCircle}
                                         size="2x"
-                                        className="text-success cursor-pointer"
+                                        className="text-success cursor-pointer grow"
                                         id="plusButton"
                                     />
                                     <UncontrolledTooltip target="plusButton" placement="right">

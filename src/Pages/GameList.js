@@ -20,7 +20,7 @@ const GameList = () => {
             'id': 2,
             'name': 'Calculus',
             'category': 'Science',
-            'plays': 13
+            'plays': 13123
         },
         {
             'id': 3,
@@ -38,7 +38,7 @@ const GameList = () => {
             'id': 5,
             'name': 'Calculus',
             'category': 'Math',
-            'plays': 10
+            'plays': 10123
         },
         {
             'id': 6,
@@ -62,19 +62,19 @@ const GameList = () => {
             'id': 9,
             'name': 'Calculus',
             'category': 'Math',
-            'plays': 10
+            'plays': 10123
         },
         {
             'id': 10,
             'name': 'Calculus',
             'category': 'Science',
-            'plays': 13
+            'plays': 13123
         },
         {
             'id': 11,
             'name': 'Calculus',
             'category': 'General',
-            'plays': 10
+            'plays': 10123
         },
         {
             'id': 12,
@@ -167,23 +167,22 @@ const GameList = () => {
                 <Col>
                     <Link to={`/game/${row.id}`}>
                         <FontAwesomeIcon icon={faPuzzlePiece} id={`play${rowIndex}`}
-                                         className='text-success cursor-pointer'/>
+                                         className='text-success cursor-pointer grow'/>
                         <UncontrolledTooltip target={`play${rowIndex}`} placement="top">
                             Play Game
                         </UncontrolledTooltip>
                     </Link>
                     <Link to={`/details/${row.id}`}>
                         <FontAwesomeIcon icon={faEye} id={`view${rowIndex}`}
-                                         className='ml-3 text-primary cursor-pointer'/>
+                                         className='ml-3 text-primary cursor-pointer grow'/>
                         <UncontrolledTooltip target={`view${rowIndex}`} placement="top">
-                            View Game Details
+                            View Details
                         </UncontrolledTooltip>
                     </Link>
                 </Col>
             </Row>
         )
     }
-
 
     const columns = [
         {
@@ -200,7 +199,8 @@ const GameList = () => {
         },
         {
             dataField: 'plays',
-            text: 'Total Plays'
+            text: 'Total Plays',
+            formatter: cell => cell.toLocaleString()
         },
         {
             isDummyField: true,
