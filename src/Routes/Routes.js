@@ -5,16 +5,16 @@ const flattenRoutes = (routes) => routes.map((route, index) => (<Route key={inde
 
 const GameBoard = React.lazy(() => import('../Pages/GameBoard'))
 
-const PreGame = React.lazy(() => import('../Pages/PreGame'))
+const GameList = React.lazy(() => import('../Pages/GameList'))
 
 const routes = [
     {
-        path: '/game',
+        path: '/game/:id',
         component: GameBoard
     },
     {
-        path: '/pregame',
-        component: PreGame
+        path: '/list',
+        component: GameList
     }
 ]
 
