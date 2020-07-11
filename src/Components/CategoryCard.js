@@ -5,14 +5,14 @@ import {isCategoryCompleted} from "../Services/handleGameState";
 import "../Styles/CategoryCard.css"
 
 
-function CategoryCard({category, categoryIndex, gameState}) {
+function CategoryCard({categoryName, categoryIndex, gameState}) {
     const completed = isCategoryCompleted(categoryIndex, gameState.data)
 
     return (
         <Card className={completed ? 'card-style-completed' : 'card-style'}>
             <CardText
                 className={`text-center py-3 px-2 ${completed ? 'card-text-style-completed' : 'card-text-style'}`}>
-                {category}
+                {categoryName}
             </CardText>
         </Card>
     );

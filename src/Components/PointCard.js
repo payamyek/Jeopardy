@@ -64,7 +64,7 @@ function PointCard(props) {
             </CardText>
             <Modal isOpen={showModal} toggle={toggle} keyboard={false} backdrop='static' centered>
                 <ModalHeader>
-                    {props.category}
+                    {props.categoryName}
                     {' '}{' '}{' '}
                     {props.gameState.stealActive && <FontAwesomeIcon icon={faExchangeAlt} color='green'/>}
                 </ModalHeader>

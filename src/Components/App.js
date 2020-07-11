@@ -1,17 +1,19 @@
-import React from "react"
-import GameBoard from './GameBoard';
+import React, {Suspense} from "react"
 import {Provider} from "react-redux";
 import store from "../Redux/store";
-import {Container} from "reactstrap";
-import SnowParticles from "../Components/SnowParticles";
+import {BrowserRouter as Router} from "react-router-dom";
+import routes from "../Routes/Routes"
 
 function App() {
     return (
         <Provider store={store}>
-            <Container fluid>
-                <SnowParticles/>
-                <GameBoard teams={["Zoomers", "Boomers"]}/>
-            </Container>
+            <Suspense fallback={<span>Loading...</span>}>
+                <Router>
+                    <switch>
+                        {routes}
+                    </switch>
+                </Router>
+            </Suspense>
         </Provider>
     );
 }

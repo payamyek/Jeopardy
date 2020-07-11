@@ -1,24 +1,32 @@
 import React from "react"
-import CategoryColumn from "./CategoryColumn";
+import CategoryColumn from "../Components/CategoryColumn";
 import data from "../Constants/sampleGameData";
 import {Row} from "reactstrap"
 import {connect} from "react-redux";
-import GameOver from "./GameOver";
-import Sidebar from "./Sidebar"
+import GameOver from "../Components/GameOver";
+import Sidebar from "../Components/Sidebar"
 import Sound from "react-sound";
 import {updateMusicNext} from "../Redux/ActionCreators/updateSettings";
 
 
+const generateGameBoard = data => {
+    const columns = [];
+    for (let i = 0; i < 5; i++) {
+        const temp = data.filter((element) => element.categoryIndex === i);
+        columns.push(<CategoryColumn data={temp}/>)
+    }
+    return columns;
+}
+
+
 function GameBoard(props) {
+    const teams = ['Boomer', 'Zoomer']
     return (
         <Row className='pt-2'>
             {props.gameState.winner ? <GameOver/> :
                 <>
-                    {
-                        Object.keys(data).map((key, i) =>
-                            <CategoryColumn categoryIndex={i} category={key} data={data[key]}/>)
-                    }
-                    <Sidebar teams={props.teams}/>
+                    {generateGameBoard(data)}
+                    <Sidebar teams={teams}/>
                 </>
             }
             <Sound url={props.settings.music.track}
