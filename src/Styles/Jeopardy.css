@@ -18,6 +18,18 @@
     transform: scale(1.02);
 }
 
+.plain-link {
+    text-decoration: none;
+    background: initial;
+    color: initial;
+}
+
+.plain-link:focus, .plain-link:hover, .plain-link:visited, .plain-link:link, .plain-link:active {
+    text-decoration: none;
+    background: initial;
+    color: initial;
+}
+
 .no-select {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -39,8 +51,8 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 .heartbeat {

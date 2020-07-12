@@ -1,10 +1,13 @@
 import React, {useState} from "react"
+import {Link} from "react-router-dom"
 import {Container, Row, Col} from "reactstrap";
+import {faPlayCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBirthdayCake, faCalculator, faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faHeart as farHeart} from '@fortawesome/free-regular-svg-icons'
 
 import '../Styles/ListItem.css'
+import UncontrolledTooltip from "reactstrap/lib/UncontrolledTooltip";
 
 const ListItem = (props) => {
     const [liked, setLiked] = useState(false)
@@ -19,13 +22,14 @@ const ListItem = (props) => {
         setLiked(!liked)
     }
 
-
     return (
         <Container className="list-item cursor-pointer no-select grow-little my-3">
-            <Row>
-                <Col className="my-2" md={4}>
-                    <FontAwesomeIcon icon={faCalculator} size="2x"/>
-                    <span className="h3 ml-3">Calculus Me</span>
+            <Row className="py-2">
+                <Col className="my-auto" md={4}>
+                    <Link to={`/game/${props.id}`} className="plain-link">
+                        <FontAwesomeIcon icon={faPlayCircle} size="2x" className="grow text-white"/>
+                    </Link>
+                    <span className="h3 mx-3">Calculus Me</span>
                 </Col>
                 <Col className="my-auto" md={6}>
                     <span className="h5">10,123 Plays</span>

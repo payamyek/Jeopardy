@@ -218,8 +218,8 @@ const GameList = () => {
                     Hello
                 </Col>
                 <Col md={6} className="overflow-y-scroll hide-scrollbar">
-                    <ListItem/>
-                    <ListItem/>
+                    <ListItem id={1}/>
+                    <ListItem id={2}/>
                     <ListItem/>
                     <ListItem/>
                     <ListItem/>
