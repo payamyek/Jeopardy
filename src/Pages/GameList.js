@@ -6,6 +6,7 @@ import SnowParticles from "../Components/SnowParticles";
 import {faPuzzlePiece, faEye} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {UncontrolledTooltip} from "reactstrap";
+import ListItem from "../Components/ListItem";
 
 const GameList = () => {
 
@@ -210,16 +211,47 @@ const GameList = () => {
     ]
 
     return (
-        <Container fluid className="my-5">
+        <Container fluid className="my-5 enable-scroll">
             <SnowParticles/>
             <Row>
-                <Col md={2}/>
-                <Col md={8}>
-                    <Card className='bg-dark'>
-                        <BasicTable keyField="id" data={data} columns={columns}/>
-                    </Card>
+                <Col md={3} className="text-white">
+                    Hello
                 </Col>
-                <Col md={2}/>
+                <Col md={6} className="overflow-y-scroll hide-scrollbar">
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                    <ListItem/>
+                </Col>
+                <Col md={3}/>
             </Row>
         </Container>
     )

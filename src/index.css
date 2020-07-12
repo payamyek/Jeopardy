@@ -20,4 +20,5 @@ code {
 
 html, body {
     overscroll-behavior: none;
+    overflow: hidden;
 }
