@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Components/App';
+import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import * as serviceWorker from './Services/serviceWorker';
+import * as serviceWorker from './services/serviceWorker';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
-import './Styles/Jeopardy.css'
+import './assets/styles/Jeopardy.css'
 
 
 ReactDOM.render(

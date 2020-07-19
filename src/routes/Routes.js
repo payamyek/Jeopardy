@@ -3,9 +3,9 @@ import {Route} from "react-router"
 
 const flattenRoutes = (routes) => routes.map((route, index) => (<Route key={index} {...route}/>));
 
-const GameBoard = React.lazy(() => import('../Pages/GameBoard'))
+const GameBoard = React.lazy(() => import('../pages/gameboard'))
 
-const GameList = React.lazy(() => import('../Pages/GameList'))
+const GameList = React.lazy(() => import('../pages/gamelist'))
 
 const routes = [
     {

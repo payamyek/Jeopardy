@@ -1,12 +1,11 @@
 import React from "react"
-import CategoryColumn from "../Components/CategoryColumn";
-import data from "../Constants/sampleGameData";
+import data from "../assets/constants/sampleGameData";
+import Sound from "react-sound";
+
 import {Row} from "reactstrap"
 import {connect} from "react-redux";
-import GameOver from "../Components/GameOver";
-import Sidebar from "../Components/Sidebar"
-import Sound from "react-sound";
-import {updateMusicNext} from "../Redux/ActionCreators/updateSettings";
+import {CategoryColumn, GameOver, Sidebar} from "./gameboard"
+import {updateMusicNext} from "../redux/ActionCreators/updateSettings";
 
 
 const generateGameBoard = data => {

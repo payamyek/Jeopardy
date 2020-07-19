@@ -2,7 +2,7 @@ import React from "react";
 import Confetti from 'react-confetti';
 import {connect} from "react-redux";
 import {Container, Image} from "react-bootstrap";
-import celebration from "../Assets/celebration.gif"
+import celebration from "../../assets/images/celebration.gif"
 
 
 function GameOver(props) {

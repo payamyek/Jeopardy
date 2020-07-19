@@ -1,4 +1,4 @@
-import tracks from "../../Constants/tracks"
+import tracks from "../../assets/constants/tracks"
 
 
 const defaultState = {

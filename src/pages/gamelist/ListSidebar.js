@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Input, Row, Col, Container, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle} from "reactstrap";
 import {connect} from "react-redux";
-import {searchList, sortList} from "../Redux/ActionCreators/updateGameList";
+import {searchList, sortList} from "../../redux/ActionCreators/updateGameList";
 
-import '../Styles/ListSidebar.css'
+import '../../assets/styles/ListSidebar.css'
 
 const ListSidebar = (props) => {
     const [sort, setSort] = useState('Default')

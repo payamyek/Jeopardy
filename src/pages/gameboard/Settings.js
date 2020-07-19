@@ -15,12 +15,12 @@ import {connect} from "react-redux";
 import {
     updateFXVolume, updateMusicNext, updateMusicPrevious,
     updateMusicVolume, updatePlayMusic,
-} from "../Redux/ActionCreators/updateSettings";
+} from "../../redux/ActionCreators/updateSettings";
 
 import Marquee from "react-smooth-marquee"
 
 import "react-awesome-button/dist/styles.css";
-import "../Styles/Settings.css"
+import "../../assets/styles/Settings.css"
 
 
 const muiTheme = createMuiTheme({

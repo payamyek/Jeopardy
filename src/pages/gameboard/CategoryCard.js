@@ -1,8 +1,8 @@
 import React from "react";
 import {Card, CardText} from "reactstrap";
 import {connect} from "react-redux";
-import {isCategoryCompleted} from "../Services/handleGameState";
-import "../Styles/CategoryCard.css"
+import {isCategoryCompleted} from "../../services/handleGameState";
+import "../../assets/styles/CategoryCard.css"
 
 
 function CategoryCard({categoryName, categoryIndex, gameState}) {

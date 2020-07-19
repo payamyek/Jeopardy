@@ -1,4 +1,4 @@
-import {determineWinner, getCoordinates} from "../../Services/handleGameState";
+import {determineWinner, getCoordinates} from "../../services/handleGameState";
 
 const startingGameState = [
     [true, true, true, true, true],

@@ -1,20 +1,20 @@
 import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import {Card, CardText, Input, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap"
-import displayNotification from "./ToastNotification"
+import displayNotification from "../../components/ToastNotification"
 
-import rubber_duck from "../Assets/rubber_duck.mp3";
-import party_horn from "../Assets/party_horn.mp3";
-import snackbarResponse from "../Constants/snackbarResponse";
+import rubber_duck from "../../assets/sounds/rubber_duck.mp3";
+import party_horn from "../../assets/sounds/party_horn.mp3";
+import snackbarResponse from "../../assets/constants/snackbarResponse";
 import {faExchangeAlt, faSkullCrossbones} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import useSound from 'use-sound';
 import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
-import {killCard, updatePoints, updateTeamAMove} from "../Redux/ActionCreators/updateGameState";
+import {killCard, updatePoints, updateTeamAMove} from "../../redux/ActionCreators/updateGameState";
 import {connect} from "react-redux";
-import '../Styles/PointCard.css'
+import '../../assets/styles/PointCard.css'
 
 
 function PointCard(props) {

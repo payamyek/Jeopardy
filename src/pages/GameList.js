@@ -1,8 +1,8 @@
 import React from "react";
+
+import SnowParticles from "../components/SnowParticles";
 import {Container, Row, Col} from "reactstrap";
-import SnowParticles from "../Components/SnowParticles";
-import ListItem from "../Components/ListItem";
-import ListSidebar from "../Components/ListSidebar";
+import {ListItem, ListSidebar} from "./gamelist"
 import {connect} from "react-redux";
 
 const GameList = ({gameList}) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Particles from "react-particles-js";
-import "../Styles/SnowParticles.css"
+import "../assets/styles/SnowParticles.css"
 
 
 const params = {
