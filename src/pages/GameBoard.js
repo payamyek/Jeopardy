@@ -4,7 +4,7 @@ import Sound from "react-sound";
 
 import {Row} from "reactstrap"
 import {connect} from "react-redux";
-import {CategoryColumn, GameOver, Sidebar} from "./gameboard"
+import {CategoryColumn, GameOver, Sidebar} from './GameBoard/index'
 import {updateMusicNext} from "../redux/ActionCreators/updateSettings";
 
 

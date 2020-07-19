@@ -4,7 +4,7 @@ import ScoreBoard from "./ScoreBoard";
 import {Col} from "react-bootstrap";
 
 
-function Sidebar(props) {
+const Sidebar = (props) => {
     return (
         <Col>
             <Settings/>

@@ -5,9 +5,8 @@ import {isCategoryCompleted} from "../../services/handleGameState";
 import "../../assets/styles/CategoryCard.css"
 
 
-function CategoryCard({categoryName, categoryIndex, gameState}) {
+const CategoryCard = ({categoryName, categoryIndex, gameState}) => {
     const completed = isCategoryCompleted(categoryIndex, gameState.data)
-
     return (
         <Card className={completed ? 'card-style-completed' : 'card-style'}>
             <CardText

@@ -3,7 +3,7 @@ import {Row} from "reactstrap";
 import {connect} from "react-redux";
 import "../../assets/styles/ScoreBoard.css"
 
-function ScoreBoard({teams, gameState}) {
+const ScoreBoard = ({teams, gameState}) => {
     const {teamAMove, teamAPoints, teamBPoints} = gameState
 
     return (

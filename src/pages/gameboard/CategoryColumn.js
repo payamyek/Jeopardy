@@ -1,10 +1,10 @@
 import React from "react";
 import CategoryCard from "./CategoryCard";
-import PointCard from "./PointCard";
+import PointCard from "./PointCard"
 import {Col} from "reactstrap"
 
 
-function CategoryColumn({data}) {
+const CategoryColumn = ({data}) => {
     const {categoryName, categoryIndex} = data[0];
     return (
         <Col>

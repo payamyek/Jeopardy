@@ -40,7 +40,7 @@ const muiTheme = createMuiTheme({
 });
 
 
-function Settings(props) {
+const Settings = (props) => {
     const [disabled, setDisabled] = useState(true)
 
     return (

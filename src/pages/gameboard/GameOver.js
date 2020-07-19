@@ -4,8 +4,7 @@ import {connect} from "react-redux";
 import {Container, Image} from "react-bootstrap";
 import celebration from "../../assets/images/celebration.gif"
 
-
-function GameOver(props) {
+const GameOver = (props) => {
     const style = {fontSize: 'xxx-large', color: 'white'}
 
     return (

@@ -17,7 +17,7 @@ import {connect} from "react-redux";
 import '../../assets/styles/PointCard.css'
 
 
-function PointCard(props) {
+const PointCard = (props) => {
     const [showModal, setShowModal] = useState(false);
     const toggle = () => setShowModal(!showModal)
 
