@@ -2,7 +2,6 @@ import React from "react";
 import Particles from "react-particles-js";
 import "../assets/styles/SnowParticles.css"
 
-
 const params = {
     "particles": {
         "number": {
@@ -55,10 +54,7 @@ const params = {
     }
 }
 
-function SnowParticles() {
-    return (
-        <Particles className='particles-style' params={params}/>
-    )
-}
+const SnowParticles = () => <Particles className='particles-style' params={params}/>
+
 
 export default SnowParticles;
