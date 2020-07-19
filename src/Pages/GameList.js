@@ -14,7 +14,7 @@ const GameList = ({gameList}) => {
                 <Col md={3} className="text-white">
                     <ListSidebar/>
                 </Col>
-                <Col md={6} className="overflow-y-scroll hide-scrollbar">
+                <Col md={6} className="overflow-y-scroll hide-scrollbar" style={{height: '95vh'}}>
                     {
                         gameList.queryResults.map((item, index) => (
                             <ListItem {...item} key={`listItem${index}`}/>
