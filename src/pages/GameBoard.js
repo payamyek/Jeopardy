@@ -5,7 +5,7 @@ import Sound from "react-sound";
 import {Row} from "reactstrap"
 import {connect} from "react-redux";
 import {CategoryColumn, GameOver, Sidebar} from './GameBoard/index'
-import {updateMusicNext} from "../redux/ActionCreators/updateSettings";
+import {updateMusicNext} from "../redux/action-creators/updateSettings";
 
 
 const generateGameBoard = data => {

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Input, Row, Col, Container, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle} from "reactstrap";
 import {connect} from "react-redux";
-import {searchList, sortList} from "../../redux/ActionCreators/updateGameList";
+import {searchList, sortList} from "../../redux/action-creators/updateGameList";
 
 import '../../assets/styles/ListSidebar.css'
 

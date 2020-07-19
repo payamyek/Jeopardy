@@ -1,4 +1,3 @@
-import React from "react"
 import CategoryCard from "./CategoryCard";
 import CategoryColumn from "./CategoryColumn";
 import GameOver from "./GameOver";

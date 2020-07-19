@@ -1,4 +1,3 @@
-import React from "react";
 import {compareTwoStrings} from "string-similarity";
 
 const data = [
