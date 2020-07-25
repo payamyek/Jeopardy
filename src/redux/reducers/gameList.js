@@ -7,201 +7,201 @@ const data = [
         category: 'Math',
         creationDate: 1595122633,
         plays: 10,
-        hearts: 123
-    },
-    {
+        hearts: 123,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 2,
         name: 'Calculus Me',
         category: 'Science',
         creationDate: 1595142633,
         plays: 13123,
-        hearts: 141
-    },
-    {
+        hearts: 141,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 3,
         name: 'Sports',
         category: 'General',
         creationDate: 1595125633,
         plays: 10,
-        hearts: 1
-    },
-    {
+        hearts: 1,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 4,
         name: 'Music',
         category: 'Sports',
         creationDate: 1595122433,
         plays: 14,
-        hearts: 1231
-    },
-    {
+        hearts: 1231,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 5,
         name: 'Physics',
         category: 'Math',
         creationDate: 1595124633,
         plays: 10123,
-        hearts: 1
-    },
-    {
+        hearts: 1,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 6,
         name: 'Calculus',
         category: 'Science',
         creationDate: 1595132633,
         plays: 13,
-        hearts: 14
-    },
-    {
+        hearts: 14,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 7,
         name: 'Calculus',
         category: 'General',
         creationDate: 1595120633,
         plays: 10,
-        hearts: 10
-    },
-    {
+        hearts: 10,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 8,
         name: 'Calculus',
         category: 'Sports',
         creationDate: 1595102633,
         plays: 14,
-        hearts: 0
-    },
-    {
+        hearts: 0,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 9,
         name: 'Calculus',
         category: 'Math',
         creationDate: 1595123633,
         plays: 10123,
-        hearts: 25
-    },
-    {
+        hearts: 25,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 10,
         name: 'Calculus',
         category: 'Science',
         creationDate: 1595162633,
         plays: 13123,
-        hearts: 56
-    },
-    {
+        hearts: 56,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 11,
         name: 'Calculus',
         category: 'General',
         creationDate: 1595122633,
         plays: 10123,
-        hearts: 90
-    },
-    {
+        hearts: 90,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 12,
         name: 'Calculus',
         category: 'Sports',
         creationDate: 1595122533,
         plays: 14,
-        hearts: 93
-    },
-    {
+        hearts: 93,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 13,
         name: 'Calculus',
         category: 'Math',
         creationDate: 1593122633,
         plays: 10,
-        hearts: 103
-    },
-    {
+        hearts: 103,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 14,
         name: 'Calculus',
         category: 'Science',
         creationDate: 1599922633,
         plays: 13,
-        hearts: 15
-    },
-    {
+        hearts: 15,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 15,
         name: 'Calculus',
         category: 'General',
         creationDate: 1595432633,
         plays: 10,
-        hearts: 18
+        hearts: 18,
+        tags: ['#school', '#science', '#fun']
 
-    },
-    {
+    }, {
         id: 16,
         name: 'Calculus',
         category: 'Sports',
         creationDate: 1595325663,
         plays: 14,
-        hearts: 23
-    },
-    {
+        hearts: 23,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 17,
         name: 'Calculus',
         category: 'Sports',
         creationDate: 1595525633,
         plays: 14,
-        hearts: 26
-    },
-    {
+        hearts: 26,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 18,
         name: 'Calculus',
         category: 'Math',
         creationDate: 1395122633,
         plays: 10,
-        hearts: 30
-
-    },
-    {
+        hearts: 30,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 19,
         name: 'Calculus',
         category: 'Science',
         creationDate: 1445122633,
         plays: 13,
-        hearts: 45
-    },
-    {
+        hearts: 45,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 20,
         name: 'Calculus',
         category: 'General',
         creationDate: 1295122633,
         plays: 10,
-        hearts: 45
-    },
-    {
+        hearts: 45,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 21,
         name: 'Calculus',
         category: 'Sports',
         creationDate: 1495142633,
         plays: 14,
-        hearts: 66
-    },
-    {
+        hearts: 66,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 22,
         name: 'Calculus',
         category: 'Math',
         creationDate: 1544122633,
         plays: 10,
-        hearts: 102
-    },
-    {
+        hearts: 102,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 23,
         name: 'Calculus',
         category: 'Science',
         creationDate: 1595522633,
         plays: 13,
-        hearts: 454
-    },
-    {
+        hearts: 454,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 24,
         name: 'Calculus',
         category: 'General',
         creationDate: 1594522633,
         plays: 10,
-        hearts: 45
-    },
-    {
+        hearts: 45,
+        tags: ['#school', '#science', '#fun']
+    }, {
         id: 25,
         name: 'Calculus',
         category: 'Sports',
         creationDate: 1595125433,
         plays: 14,
-        hearts: 154
+        hearts: 154,
+        tags: ['#school', '#science', '#fun']
     }
 ]
 
@@ -248,7 +248,6 @@ const sort = (state, action) => {
         default:
             break
     }
-
     return newState
 }
 

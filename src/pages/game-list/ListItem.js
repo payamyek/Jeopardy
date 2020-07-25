@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {Link} from "react-router-dom"
-import {Container, Row, Col} from "reactstrap";
+import {Container, Row, Col, Badge} from "reactstrap";
 import {faPlayCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBirthdayCake, faHeart} from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +14,8 @@ const ListItem = (props) => {
         name = 'Calculus Me',
         creationDate = 1595122633,
         plays = 1234,
-        hearts = 123
+        hearts = 123,
+        tags = ['#tag']
     } = props
 
     const [hearted, setHearted] = useState(false)
@@ -45,6 +46,13 @@ const ListItem = (props) => {
                     <span className="h5 ml-2">
                         {(hearted ? hearts + 1 : hearts).toLocaleString()}
                     </span>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={6}>
+                    {
+                        tags.map(tag => <span className="h5"><Badge className="mb-2 mr-2">{tag}</Badge></span>)
+                    }
                 </Col>
             </Row>
         </Container>

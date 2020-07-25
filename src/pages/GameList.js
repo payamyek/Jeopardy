@@ -3,7 +3,7 @@ import React from "react";
 import SnowParticles from "../components/SnowParticles";
 import {Container, Row, Col} from "reactstrap";
 
-import {ListSidebar, ListItem} from './GameList/index'
+import {ListSidebar, ListItem} from './game-list/index'
 import {connect} from "react-redux";
 
 const GameList = ({gameList}) => (
@@ -15,9 +15,7 @@ const GameList = ({gameList}) => (
             </Col>
             <Col md={6} className="overflow-y-scroll hide-scrollbar" style={{height: '95vh'}}>
                 {
-                    gameList.queryResults.map((item, index) => (
-                        <ListItem {...item} key={`listItem${index}`}/>
-                    ))
+                    gameList.queryResults.map((item, index) => <ListItem {...item} key={`listItem${index}`}/>)
                 }
             </Col>
         </Row>
