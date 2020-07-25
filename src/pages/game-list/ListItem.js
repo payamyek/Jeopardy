@@ -1,10 +1,11 @@
 import React, {useState} from "react"
 import {Link} from "react-router-dom"
 import {Container, Row, Col, Badge} from "reactstrap";
-import {faPlayCircle} from "@fortawesome/free-solid-svg-icons";
+import {faPlayCircle, faShareSquare} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBirthdayCake, faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faHeart as farHeart} from '@fortawesome/free-regular-svg-icons'
+import {FacebookShareButton} from "react-share";
 
 import '../../assets/styles/ListItem.css'
 
@@ -49,7 +50,7 @@ const ListItem = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Col md={6}>
+                <Col md={8}>
                     {
                         tags.map(tag => <span className="h5"><Badge className="mb-2 mr-2">{tag}</Badge></span>)
                     }

@@ -1,9 +1,23 @@
 import React, {useState} from "react";
-import {Input, Row, Col, Container, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle} from "reactstrap";
+import {
+    Input,
+    Row,
+    Col,
+    Container,
+    UncontrolledDropdown,
+    DropdownMenu,
+    DropdownItem,
+    DropdownToggle,
+    UncontrolledCollapse,
+} from "reactstrap";
 import {connect} from "react-redux";
+import classnames from 'classnames'
 import {searchList, sortList} from "../../redux/action-creators/updateGameList";
 
 import '../../assets/styles/ListSidebar.css'
+import LineBreak from "../../components/LineBreak";
+import CheckBox from "../../components/CheckBox";
+import ListDropdown from "./ListDropdown";
 
 const ListSidebar = (props) => {
     const [sort, setSort] = useState('Default')
@@ -22,7 +36,7 @@ const ListSidebar = (props) => {
         <Container fluid className="list-sidebar p-3 mt-3">
             <Row>
                 <Col>
-                    <span className="text-white font-14 mr-2">Sort By:</span>
+                    <span className="text-white font-16 mr-2">Sort By:</span>
                     <UncontrolledDropdown className="d-inline">
                         <DropdownToggle caret>
                             {sort}
@@ -31,7 +45,9 @@ const ListSidebar = (props) => {
                             {
                                 dropdownValues.map((x, index) => (
                                     <DropdownItem key={`dropdownItem${index}`} onClick={() => handleOnClick(x)}>
-                                        <span className={sort === x ? 'text-primary' : ''}>{x}</span>
+                                        <span className={classnames({'text-primary': sort === x}, 'font-16')}>
+                                            {x}
+                                        </span>
                                     </DropdownItem>
                                 ))
                             }
@@ -44,6 +60,7 @@ const ListSidebar = (props) => {
                     <Input placeholder="Search" onChange={e => props.searchList(e.target.value)}/>
                 </Col>
             </Row>
+            <ListDropdown/>
         </Container>
     )
 }
