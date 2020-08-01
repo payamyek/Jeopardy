@@ -16,7 +16,7 @@ const data = [
         creationDate: 1595142633,
         plays: 13123,
         hearts: 141,
-        tags: ['#school', '#science', '#fun']
+        tags: ['#school', 'science', '#fun']
     }, {
         id: 3,
         name: 'Sports',
@@ -251,12 +251,29 @@ const sort = (state, action) => {
     return newState
 }
 
+const tagFilter = (state, action) => {
+    const newState = {...state}
+    const {tag} = action.payload
+    newState.queryResults = newState.data.filter(item => item.tags.includes(tag.toLowerCase()))
+    return newState
+}
+
+const resetQueryResults = (state) => {
+    const newState = {...state}
+    newState.queryResults = [...newState.data]
+    return newState
+}
+
 export default function gameList(state = defaultData, action) {
     switch (action.type) {
         case "SEARCH":
             return search(state, action)
         case "SORT":
             return sort(state, action)
+        case "TAG_FILTER":
+            return tagFilter(state, action)
+        case "RESET_QUERY_RESULTS":
+            return resetQueryResults(state)
         default:
             return state
     }

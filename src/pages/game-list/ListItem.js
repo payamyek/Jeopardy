@@ -5,7 +5,6 @@ import {faPlayCircle, faShareSquare} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBirthdayCake, faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faHeart as farHeart} from '@fortawesome/free-regular-svg-icons'
-import {FacebookShareButton} from "react-share";
 
 import '../../assets/styles/ListItem.css'
 

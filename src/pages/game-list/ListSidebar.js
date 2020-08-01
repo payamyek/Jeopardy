@@ -8,15 +8,12 @@ import {
     DropdownMenu,
     DropdownItem,
     DropdownToggle,
-    UncontrolledCollapse,
 } from "reactstrap";
 import {connect} from "react-redux";
 import classnames from 'classnames'
 import {searchList, sortList} from "../../redux/action-creators/updateGameList";
 
 import '../../assets/styles/ListSidebar.css'
-import LineBreak from "../../components/LineBreak";
-import CheckBox from "../../components/CheckBox";
 import ListDropdown from "./ListDropdown";
 
 const ListSidebar = (props) => {
