@@ -20,7 +20,7 @@ import {
 import Marquee from "react-smooth-marquee"
 
 import "react-awesome-button/dist/styles.css";
-import "../../assets/styles/Settings.css"
+import "../../assets/styles/Settings.sass"
 
 
 const muiTheme = createMuiTheme({

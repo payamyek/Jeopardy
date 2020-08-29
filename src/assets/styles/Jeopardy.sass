@@ -1,0 +1,109 @@
+%plain-link-style
+  text-decoration: none
+  background: initial
+  color: initial
+
+
+.cursor-pointer
+  cursor: pointer
+
+.grow
+  transition: all .2s ease-in-out
+
+  &:hover
+    transform: scale(1.1)
+
+
+.grow-little
+  transition: all .2s ease-in-out
+
+  &:hover
+    transform: scale(1.02)
+
+
+.plain-link
+  @extend %plain-link-style
+
+  &:focus, &:hover, &:visited, &:link, &:active
+    @extend %plain-link-style
+
+
+.no-select
+  -webkit-touch-callout: none
+  /* iOS Safari */
+  -webkit-user-select: none
+  /* Safari */
+  -khtml-user-select: none
+  /* Konqueror HTML */
+  -moz-user-select: none
+  /* Old versions of Firefox */
+  -ms-user-select: none
+  /* Internet Explorer/Edge */
+  user-select: none
+/* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+
+.overflow-y-scroll
+  overflow-y: scroll
+  max-height: 95vh
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar
+  display: none
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar
+  -ms-overflow-style: none
+  /* IE and Edge */
+  scrollbar-width: none
+/* Firefox */
+
+
+.heartbeat
+  animation: heartbeat 1.5s ease-in-out infinite both
+
+.heartbeat-hover:hover
+  animation: heartbeat 1.5s ease-in-out infinite both
+
+
+@keyframes heartbeat
+  from
+    transform: scale(1)
+    transform-origin: center center
+    animation-timing-function: ease-out
+  10%
+    transform: scale(0.91)
+    animation-timing-function: ease-in
+  17%
+    transform: scale(0.98)
+    animation-timing-function: ease-out
+  33%
+    transform: scale(0.87)
+    animation-timing-function: ease-in
+  45%
+    transform: scale(1)
+    animation-timing-function: ease-out
+
+
+.vibrate
+  animation: vibrate-1 0.3s linear infinite both
+
+  &:hover
+    animation: vibrate-1 0.3s linear infinite both
+
+
+@keyframes vibrate-1
+  0%
+    transform: translate(0)
+  20%
+    transform: translate(-2px, 2px)
+  40%
+    transform: translate(-2px, -2px)
+  60%
+    transform: translate(2px, 2px)
+  80%
+    transform: translate(2px, -2px)
+  100%
+    transform: translate(0)
+    
+

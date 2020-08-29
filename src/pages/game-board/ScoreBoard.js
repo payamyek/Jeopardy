@@ -1,7 +1,7 @@
 import React from "react"
 import {Row} from "reactstrap";
 import {connect} from "react-redux";
-import "../../assets/styles/ScoreBoard.css"
+import "../../assets/styles/ScoreBoard.sass"
 
 const ScoreBoard = ({teams, gameState}) => {
     const {teamAMove, teamAPoints, teamBPoints} = gameState

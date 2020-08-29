@@ -12,9 +12,9 @@ import {
 import {connect} from "react-redux";
 import classnames from 'classnames'
 import {searchList, sortList} from "../../redux/action-creators/updateGameList";
-
-import '../../assets/styles/ListSidebar.css'
 import ListDropdown from "./ListDropdown";
+
+import '../../assets/styles/ListSidebar.sass'
 
 const ListSidebar = (props) => {
     const [sort, setSort] = useState('Default')

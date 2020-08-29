@@ -1,0 +1,29 @@
+$bg-primary: #078a83
+$bg-secondary: black
+
+$font-stack: Inconsolata, serif
+$font-size: 2vw
+
+%card-text
+  font-Weight: bold
+  color: white
+  font-size: $font-size
+  font-family: $font-stack
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.card-style
+  background-color: $bg-primary !important
+
+.card-style-completed
+  background-color: $bg-secondary !important
+
+.card-text-style
+  @extend %card-text
+  background-color: $bg-primary !important
+
+.card-text-style-completed
+  @extend %card-text
+  background-color: $bg-secondary !important
+

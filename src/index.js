@@ -6,7 +6,7 @@ import * as serviceWorker from './services/serviceWorker';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
-import './assets/styles/Jeopardy.css'
+import './assets/styles/Jeopardy.sass'
 
 
 ReactDOM.render(

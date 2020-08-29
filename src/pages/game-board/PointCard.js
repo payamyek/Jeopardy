@@ -14,7 +14,7 @@ import {random} from "lodash";
 import {compareTwoStrings} from "string-similarity";
 import {killCard, updatePoints, updateTeamAMove} from "../../redux/action-creators/updateGameState";
 import {connect} from "react-redux";
-import '../../assets/styles/PointCard.css'
+import '../../assets/styles/PointCard.sass'
 
 
 const PointCard = (props) => {
