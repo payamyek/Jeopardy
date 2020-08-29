@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './services/serviceWorker';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import './index.css';
+import './index.sass';
 import './assets/styles/Jeopardy.sass'
 
 
